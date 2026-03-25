@@ -30,6 +30,7 @@ void main() {
                 iteration++;
                 boolean swapped = false;
                 // nested loop to compare the value of the next index
+                // -i to skip the sorted elements
                 for (int j = 0; j < wines.size() - 1 - i; j++) {
                     // proceeds if current value is larger than next value
                     if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
