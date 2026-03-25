@@ -42,7 +42,6 @@ public static class BubbleSort {
                     wines.set(j, wines.get(j + 1));
                     // sets next to temp variable with original value
                     wines.set(j + 1, temp);
-                    System.out.println(temp.alcohol());
                 }
             }
         }
