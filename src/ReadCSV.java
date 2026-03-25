@@ -1,9 +1,13 @@
 import java.io.*;
 import java.util.*;
+/*
+
 
 public class ReadCSV {
 
-    public static List<Double> readAlcoholValues(String filePath) {
+    String filePath = "src/wine+quality";
+
+    public static List<Double> readWineValues(String filePath) {
         List<Double> alcoholValues = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -41,3 +45,6 @@ public class ReadCSV {
         return allValues;
     }
 }
+
+
+ */

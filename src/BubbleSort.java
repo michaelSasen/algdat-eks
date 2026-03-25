@@ -8,42 +8,50 @@ import java.util.*;
 
 void main(){
 
-    List<Double> originalList = ReadCSV.readAllCSVs(folderPath);
+    ArrayList<Wine> wines  = CSVImport.fileReader();
+
     Timer timer = new Timer();
     timer.start();
-    b
+    BubbleSort.bubbleSortNonOptimized(wines);
+    timer.end();
+
+    System.out.println(timer.getTime());
+
 
 }
 
 
 /* ==============================================================================
-* BUBBLE SORT
+* BUBBLE SORT ALGORITHM
 ============================================================================== */
 
 
-public class BubbleSort {
+public static class BubbleSort {
 
-    // NON OPTIMIZED BUBBLE SORT
-    public static void bubbleSortNonOptimized(List<Double> list) {
-        // assign list length to variable
-        int n = list.size();
+    // ----NON OPTIMIZED BUBBLE SORT----
+    public static void bubbleSortNonOptimized(ArrayList<Wine> wines) {
         // traverse list
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < wines.size() - 1; i++) {
             // nested loop to compare the value of the next index
-            for (int j = 0; j < n - 1; j++) {
-                //
-                if (list.get(j) > list.get(j + 1)) {
-                    double temp = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, temp);
+            for (int j = 0; j < wines.size() - 1; j++) {
+                // proceeds if current value is larger than next value
+                if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
+                    // sets current to variable temp
+                    Wine temp = wines.get(j);
+                    // sets current to next
+                    wines.set(j, wines.get(j + 1));
+                    // sets next to temp variable with original value
+                    wines.set(j + 1, temp);
+                    System.out.println(temp.alcohol());
                 }
             }
         }
-    }
+    } // End non-optimized sort
 
-    // OPTIMIZED BUBBLE SORT
+    // ----OPTIMIZED BUBBLE SORT----
     public static void bubbleSortOptimized(List<Double> list) {
         int n = list.size();
+        // implementing a swapped boolean
         boolean swapped;
 
         for (int i = 0; i < n - 1; i++) {
@@ -58,10 +66,11 @@ public class BubbleSort {
                 }
             }
 
+            //
             if (!swapped) {
                 break;
             }
         }
-    }
+    } // End optimized sort
 }
 

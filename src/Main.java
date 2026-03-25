@@ -1,10 +1,10 @@
-void main() {
+/* void main() {
 
     //CSV-filene mappa
     String folderPath = "src/wine+quality";
 
     // leser alle filene i mappa
-    List<Double> originalList = ReadCSV.readAllCSVs(folderPath);
+    List<Double> originalList = CSVImport.readAllCSVs(folderPath);
 
     //en for optimalisert og en for ikke optimalisert
     List<Double> list1 = new ArrayList<>(originalList);
@@ -28,3 +28,5 @@ void main() {
     IO.println(list2);
 
 }
+
+ */

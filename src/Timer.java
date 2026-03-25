@@ -11,14 +11,15 @@ public class Timer {
     private long startTime;
     private long endTime;
 
+    // Starts time
     public void start() {
         startTime = System.nanoTime();
     }
-
+    // Ends time
     public void end() {
         endTime = System.nanoTime();
     }
-
+    // Returns time spent
     public long getTime() {
         return endTime - startTime;
     }
