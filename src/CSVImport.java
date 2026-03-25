@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CSVImport {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         fileReader();
     }
 
