@@ -51,7 +51,7 @@ public static class BubbleSort {
         for (int i = 0; i < wines.size() - 1; i++) {
             swapped = false;
             // nested loop to compare the value of the next index
-            for (int j = 0; j < wines.size() - 1; j++) {
+            for (int j = 0; j < wines.size() - 1 - i; j++) {
                 // proceeds if current value is larger than next value
                 if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
                     // sets current to variable temp
@@ -64,7 +64,7 @@ public static class BubbleSort {
                 }
             }
 
-            //
+            // Exit early if no swaps
             if (!swapped) {
                 break;
             }
