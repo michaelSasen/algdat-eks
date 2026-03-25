@@ -16,15 +16,11 @@ void main(){
     timer.end();
 
     System.out.println(timer.getTime());
-
-
 }
-
 
 /* ==============================================================================
 * BUBBLE SORT ALGORITHM
 ============================================================================== */
-
 
 public static class BubbleSort {
 
@@ -48,19 +44,22 @@ public static class BubbleSort {
     } // End non-optimized sort
 
     // ----OPTIMIZED BUBBLE SORT----
-    public static void bubbleSortOptimized(List<Double> list) {
-        int n = list.size();
+    public static void bubbleSortOptimized(ArrayList<Wine> wines) {
         // implementing a swapped boolean
         boolean swapped;
 
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < wines.size() - 1; i++) {
             swapped = false;
-
-            for (int j = 0; j < n - i - 1; j++) {
-                if (list.get(j) > list.get(j + 1)) {
-                    double temp = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, temp);
+            // nested loop to compare the value of the next index
+            for (int j = 0; j < wines.size() - 1; j++) {
+                // proceeds if current value is larger than next value
+                if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
+                    // sets current to variable temp
+                    Wine temp = wines.get(j);
+                    // sets current to next
+                    wines.set(j, wines.get(j + 1));
+                    // sets next to temp variable with original value
+                    wines.set(j + 1, temp);
                     swapped = true;
                 }
             }
