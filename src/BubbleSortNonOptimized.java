@@ -1,5 +1,3 @@
-import java.util.*;
-
 /* ==============================================================================
 * TASK 1: BUBBLE SORT ALGORITHM
 * code inspiration source: LO 3_SortingAlgorithms.pptx by Prof. Dr. Rashmi Gupta
@@ -21,6 +19,7 @@ void main(){
 /* ==============================================================================
 * BUBBLE SORT ALGORITHM
 ============================================================================== */
+
     // ----NON OPTIMIZED BUBBLE SORT----
     public static int[] bubbleSortNonOptimized(ArrayList<Wine> wines) {
         // implementing a swapped boolean

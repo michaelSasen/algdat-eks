@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CSVImport {
-    public static void main(String[] args) {
+    void main() {
         fileReader();
     }
 
