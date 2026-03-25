@@ -12,7 +12,8 @@ void main(){
 
     Timer timer = new Timer();
     timer.start();
-    BubbleSort.bubbleSortNonOptimized(wines);
+    // BubbleSort.bubbleSortNonOptimized(wines);
+    // BubbleSort.bubbleSortOptimized(wines);
     timer.end();
 
     System.out.println(timer.getTime());
