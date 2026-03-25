@@ -1,9 +1,23 @@
 import java.util.*;
 
 /* ==============================================================================
-* BUBBLE SORT ALGORITHM
+* TASK 1: BUBBLE SORT ALGORITHM
 * code inspiration source: LO 3_SortingAlgorithms.pptx by Prof. Dr. Rashmi Gupta
 * fetched: 25/03-26
+============================================================================== */
+
+void main(){
+
+    List<Double> originalList = ReadCSV.readAllCSVs(folderPath);
+    Timer timer = new Timer();
+    timer.start();
+    b
+
+}
+
+
+/* ==============================================================================
+* BUBBLE SORT
 ============================================================================== */
 
 
