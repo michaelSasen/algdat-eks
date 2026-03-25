@@ -1,34 +1,30 @@
-import java.util.*;
+void main() {
 
-public class Main {
-    public static void main(String[] args) {
+    //CSV-filene mappa
+    String folderPath = "src/wine+quality";
 
-        //CSV-filene mappa
-        String folderPath = "src/wine+quality";
+    // leser alle filene i mappa
+    List<Double> originalList = ReadCSV.readAllCSVs(folderPath);
 
-        // leser alle filene i mappa
-        List<Double> originalList = ReadCSV.readAllCSVs(folderPath);
+    //en for optimalisert og en for ikke optimalisert
+    List<Double> list1 = new ArrayList<>(originalList);
+    List<Double> list2 = new ArrayList<>(originalList);
 
-        //en for optimalisert og en for ikke optimalisert
-        List<Double> list1 = new ArrayList<>(originalList);
-        List<Double> list2 = new ArrayList<>(originalList);
+    //unødvendig egt
+    IO.println("Antall alcohol-verdier: " + originalList.size());
 
-        //unødvendig egt
-        System.out.println("Antall alcohol-verdier: " + originalList.size());
+    // Ikke-optimalisert
+    BubbleSort.bubbleSortNonOptimized(list1);
 
-        // Ikke-optimalisert
-        BubbleSort.bubbleSortNonOptimized(list1);
-
-        // Optimalisert
-        BubbleSort.bubbleSortOptimized(list2);
+    // Optimalisert
+    BubbleSort.bubbleSortOptimized(list2);
 
 
-        // bingbong
-        System.out.println("\nIkke-optimalisert sortert liste:");
-        System.out.println(list1);
+    // bingbong
+    IO.println("\nIkke-optimalisert sortert liste:");
+    IO.println(list1);
 
-        System.out.println("\nOptimalisert sortert liste:");
-        System.out.println(list2);
+    IO.println("\nOptimalisert sortert liste:");
+    IO.println(list2);
 
-    }
 }
