@@ -26,7 +26,22 @@ public class CSVImport {
             br.readLine();
 
             while ((line = br.readLine()) != null) {
-                Wine wine = getWine(line);
+                String[] row = line.split(";");
+
+                Wine wine = new Wine(
+                        Double.parseDouble(row[0]),
+                        Double.parseDouble(row[1]),
+                        Double.parseDouble(row[2]),
+                        Double.parseDouble(row[3]),
+                        Double.parseDouble(row[4]),
+                        Double.parseDouble(row[5]),
+                        Double.parseDouble(row[6]),
+                        Double.parseDouble(row[7]),
+                        Double.parseDouble(row[8]),
+                        Double.parseDouble(row[9]),
+                        Double.parseDouble(row[10]),
+                        Integer.parseInt(row[11])
+                );
 
                 wines.add(wine);
 
@@ -37,26 +52,6 @@ public class CSVImport {
             }
         return wines;
         }
-
-    private static Wine getWine(String line) {
-        String[] row = line.split(";");
-
-        Wine wine = new Wine(
-                Double.parseDouble(row[0]),
-                Double.parseDouble(row[1]),
-                Double.parseDouble(row[2]),
-                Double.parseDouble(row[3]),
-                Double.parseDouble(row[4]),
-                Double.parseDouble(row[5]),
-                Double.parseDouble(row[6]),
-                Double.parseDouble(row[7]),
-                Double.parseDouble(row[8]),
-                Double.parseDouble(row[9]),
-                Double.parseDouble(row[10]),
-                Integer.parseInt(row[11])
-        );
-        return wine;
     }
-}
 
 
