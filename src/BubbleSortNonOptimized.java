@@ -12,8 +12,7 @@ void main(){
 
     Timer timer = new Timer();
     timer.start();
-    // BubbleSort.bubbleSortNonOptimized(wines);
-    // BubbleSort.bubbleSortOptimized(wines);
+    bubbleSortNonOptimized(wines);
     timer.end();
 
     System.out.println(timer.getTime());
@@ -22,13 +21,14 @@ void main(){
 /* ==============================================================================
 * BUBBLE SORT ALGORITHM
 ============================================================================== */
-
-public static class BubbleSort {
-
     // ----NON OPTIMIZED BUBBLE SORT----
-    public static void bubbleSortNonOptimized(ArrayList<Wine> wines) {
-        // traverse list
+    public static int[] bubbleSortNonOptimized(ArrayList<Wine> wines) {
+        // implementing a swapped boolean
+        int iteration = 0;
+        int swaps = 0;
+
         for (int i = 0; i < wines.size() - 1; i++) {
+            iteration++;
             // nested loop to compare the value of the next index
             for (int j = 0; j < wines.size() - 1; j++) {
                 // proceeds if current value is larger than next value
@@ -39,37 +39,13 @@ public static class BubbleSort {
                     wines.set(j, wines.get(j + 1));
                     // sets next to temp variable with original value
                     wines.set(j + 1, temp);
+                    swaps++;
                 }
             }
         }
-    } // End non-optimized sort
-
-    // ----OPTIMIZED BUBBLE SORT----
-    public static void bubbleSortOptimized(ArrayList<Wine> wines) {
-        // implementing a swapped boolean
-        boolean swapped;
-
-        for (int i = 0; i < wines.size() - 1; i++) {
-            swapped = false;
-            // nested loop to compare the value of the next index
-            for (int j = 0; j < wines.size() - 1 - i; j++) {
-                // proceeds if current value is larger than next value
-                if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
-                    // sets current to variable temp
-                    Wine temp = wines.get(j);
-                    // sets current to next
-                    wines.set(j, wines.get(j + 1));
-                    // sets next to temp variable with original value
-                    wines.set(j + 1, temp);
-                    swapped = true;
-                }
-            }
-
-            // Exit early if no swaps
-            if (!swapped) {
-                break;
-            }
-        }
+        return new int[]{iteration, swaps};
     } // End optimized sort
-}
+
+
+
 
