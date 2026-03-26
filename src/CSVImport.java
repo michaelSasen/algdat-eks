@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class CSVImport {
     void main() {
@@ -17,6 +18,7 @@ public class CSVImport {
 
         // List to store CSV elements
         ArrayList<Wine> wines = new ArrayList<>();
+
     for(String filePath : filePaths) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -51,6 +53,14 @@ public class CSVImport {
             }
         return wines;
         }
-    }
 
+    public static HashSet<Double> uniqueAlcoholValues(ArrayList<Wine> wines){
+        HashSet<Double> uniqueAlc = new HashSet<>();
+
+        for (Wine wine : wines) {
+            uniqueAlc.add(wine.alcohol());
+        }
+        return uniqueAlc;
+    }
+}
 

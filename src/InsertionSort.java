@@ -7,20 +7,34 @@
 void main() {
 
     ArrayList<Wine> wines = CSVImport.fileReader();
+    HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
+
+    int[] result = insertionSort(wines);
+    int[] uniqueResults = insertionSortUniqueAlcohol(uniqueAlcohol);
 
     Timer timer = new Timer();
     timer.start();
     insertionSort(wines);
     timer.end();
 
-    IO.println(timer.getTime());
+    IO.println("Time: " + timer.getTime());
+    IO.println("Iterations: " + result[0]);
+    IO.println("Swaps: " + result[1]);
+
+    timer.start();
+    insertionSortUniqueAlcohol(uniqueAlcohol);
+    timer.end();
+
+    IO.println("Time: " + timer.getTime());
+    IO.println("Iterations: " + uniqueResults[0]);
+    IO.println("Swaps: " + uniqueResults[1]);
 }
 
 /* ==============================================================================
-* BUBBLE SORT ALGORITHM
+* INSERTION SORT ALGORITHM
 ============================================================================== */
 
-// ----OPTIMIZED BUBBLE SORT----
+// ----INSERTION SORT FULL DATASET----
 public static int[] insertionSort(ArrayList<Wine> wines) {
     // implementing a swapped boolean
     int iteration = 0;
@@ -41,5 +55,25 @@ public static int[] insertionSort(ArrayList<Wine> wines) {
         }
     return new int[]{iteration, swaps};
 } // End insertion sort
+
+
+public static int[] insertionSortUniqueAlcohol (HashSet<Double> uniqueAlcohol) {
+    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
+    int iteration = 0;
+    int swaps = 0;
+    for (int i = 1; i < alcohol.size(); i++) {
+        iteration++;
+        int j = i - 1;
+        Double curr = alcohol.get(i);
+        while (j >= 0 && alcohol.get(j) > curr) {
+            alcohol.set(j + 1, alcohol.get(j));
+            swaps++;
+            j--;
+        }
+        alcohol.set(j + 1, curr);
+    }
+    return new int[]{iteration, swaps};
+} // End insertion sort unique alcohol values
+
 
 
