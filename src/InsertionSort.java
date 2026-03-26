@@ -6,9 +6,12 @@
 
 void main() {
 
+    // full dataset
     ArrayList<Wine> wines = CSVImport.fileReader();
+    // hashset with only unique alcohol values
     HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
 
+    // captures values returned by the methods
     int[] result = insertionSort(wines);
     int[] uniqueResults = insertionSortUniqueAlcohol(uniqueAlcohol);
 
@@ -60,8 +63,9 @@ public static int[] insertionSort(ArrayList<Wine> wines) {
     return new int[]{iteration, swaps};
 } // End insertion sort
 
-
+// ----INSERTION SORT UNIQUE VALUES----
 public static int[] insertionSortUniqueAlcohol (HashSet<Double> uniqueAlcohol) {
+    // converting hashset to arraylist
     ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
     int iteration = 0;
     int swaps = 0;
