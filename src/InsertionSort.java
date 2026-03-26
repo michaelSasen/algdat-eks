@@ -17,6 +17,7 @@ void main() {
     insertionSort(wines);
     timer.end();
 
+    IO.println("Full dataset: ");
     IO.println("Time: " + timer.getTime());
     IO.println("Iterations: " + result[0]);
     IO.println("Swaps: " + result[1]);
@@ -25,6 +26,9 @@ void main() {
     insertionSortUniqueAlcohol(uniqueAlcohol);
     timer.end();
 
+    IO.println("");
+
+    IO.println("Unique alcohol values: ");
     IO.println("Time: " + timer.getTime());
     IO.println("Iterations: " + uniqueResults[0]);
     IO.println("Swaps: " + uniqueResults[1]);
