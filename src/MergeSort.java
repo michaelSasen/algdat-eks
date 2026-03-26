@@ -17,21 +17,21 @@ void main() {
     mergeSort(wines);
     timer.end();
 
-    println("Full dataset: ");
-    println("Time: " + timer.getTime());
-    println("Iterations: " + result[0]);
-    println("Swaps: " + result[1]);
+    IO.println("Full dataset: ");
+    IO.println("Time: " + timer.getTime());
+    IO.println("Iterations: " + result[0]);
+    IO.println("Swaps: " + result[1]);
 
     timer.start();
     //mergeSortUniqueAlcohol(uniqueAlcohol);
     timer.end();
 
-    println("");
+    IO.println("");
 
-    println("Unique alcohol values: ");
-    println("Time: " + timer.getTime());
-    //println("Iterations: " + uniqueResults[0]);
-    //println("Swaps: " + uniqueResults[1]);
+    IO.println("Unique alcohol values: ");
+    IO.println("Time: " + timer.getTime());
+    //IO.println("Iterations: " + uniqueResults[0]);
+    //IO.println("Swaps: " + uniqueResults[1]);
 }
 
 /* ==============================================================================
