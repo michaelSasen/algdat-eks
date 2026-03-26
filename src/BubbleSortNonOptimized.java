@@ -4,6 +4,8 @@
 * fetched: 25/03-26
 ============================================================================== */
 
+import java.util.ArrayList;
+
 void main(){
 
     ArrayList<Wine> wines  = CSVImport.fileReader();
@@ -12,6 +14,10 @@ void main(){
     timer.start();
     bubbleSortNonOptimized(wines);
     timer.end();
+
+    for (Wine wine : wines) {
+        IO.println(wine.alcohol());
+    }
 
     System.out.println(timer.getTime());
 }
