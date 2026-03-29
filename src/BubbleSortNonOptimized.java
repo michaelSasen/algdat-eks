@@ -66,8 +66,9 @@ void main(){
             }
         }
         return new int[]{iteration, swaps};
-    } // End optimized sort
+    } // End non optimized sort
 
+// ----NON OPTIMIZED BUBBLE SORT UNIQUE ALCOHOL VALUES----
 public static int[] bubbleSortNonOptimizedUnique(HashSet<Double> uniqueAlcohol) {
     // converting hashset to arraylist
     ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
@@ -93,7 +94,7 @@ public static int[] bubbleSortNonOptimizedUnique(HashSet<Double> uniqueAlcohol) 
         }
     }
     return new int[]{iteration, swaps};
-} // End optimized sort
+} // End non optimized sort unique
 
 
 

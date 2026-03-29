@@ -79,6 +79,6 @@ public static int[] bubbleSortOptimizedUnique(HashSet<Double> uniqueAlcohol) {
         }
     }
     return new int[]{iteration, swaps};
-} // End optimized sort
+} // End optimized sort unique
 
 
