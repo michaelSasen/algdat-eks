@@ -1,10 +1,8 @@
 /* ==============================================================================
-* TASK 1: BUBBLE SORT ALGORITHM
+* TASK 1: BUBBLE SORT OPTIMIZED ALGORITHM
 * code inspiration source: LO 3_SortingAlgorithms.pptx by Prof. Dr. Rashmi Gupta
 * fetched: 25/03-26
 ============================================================================== */
-
-import java.util.ArrayList;
 
 void main(){
 
