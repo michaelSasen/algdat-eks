@@ -10,13 +10,9 @@ void main(){
     // hashset with only unique alcohol values
     HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
 
-    // captures values returned by the methods
-    int[] result = bubbleSortNonOptimized(wines);
-    int[] uniqueResults = bubbleSortNonOptimizedUnique(uniqueAlcohol);
-
     Timer timer = new Timer();
     timer.start();
-    bubbleSortNonOptimized(wines);
+    int[] result = bubbleSortNonOptimized(wines);
     timer.end();
 
     IO.println("Full dataset: ");
@@ -25,7 +21,7 @@ void main(){
     IO.println("Swaps: " + result[1]);
 
     timer.start();
-    bubbleSortNonOptimizedUnique(uniqueAlcohol);
+    int[] uniqueResults = bubbleSortNonOptimizedUnique(uniqueAlcohol);
     timer.end();
 
     IO.println("");
@@ -34,7 +30,6 @@ void main(){
     IO.println("Time: " + timer.getTime());
     IO.println("Iterations: " + uniqueResults[0]);
     IO.println("Swaps: " + uniqueResults[1]);
-
 }
 
 /* ==============================================================================
@@ -53,12 +48,7 @@ void main(){
             for (int j = 0; j < wines.size() - 1; j++) {
                 // proceeds if current value is larger than next value
                 if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
-                    // sets current to variable temp
-                    Wine temp = wines.get(j);
-                    // sets current to next
-                    wines.set(j, wines.get(j + 1));
-                    // sets next to temp variable with original value
-                    wines.set(j + 1, temp);
+                    Collections.swap(wines, j, j +1);
                     swaps++;
                 }
             }
@@ -81,12 +71,7 @@ public static int[] bubbleSortNonOptimizedUnique(HashSet<Double> uniqueAlcohol) 
         for (int j = 0; j < alcohol.size() - 1; j++) {
             // proceeds if current value is larger than next value
             if (alcohol.get(j) > alcohol.get(j + 1)) {
-                // sets current to variable temp
-                Double temp = alcohol.get(j);
-                // sets current to next
-                alcohol.set(j, alcohol.get(j + 1));
-                // sets next to temp variable with original value
-                alcohol.set(j + 1, temp);
+                Collections.swap(alcohol, j, j +1);
                 swaps++;
             }
         }
