@@ -33,12 +33,10 @@ void main() {
     IO.println("Time: " + timer.getTime());
     IO.println("Comparisons: " + comparisons);
 }
-
 /* ==============================================================================
 * QUICK SORT ALGORITHM PIVOT RANDOM
 ============================================================================== */
 public static void quickSort(ArrayList<Wine> wines, int low, int high) {
-
     if (low < high) {
         int pivot = partition(wines, low, high);
         // Recursion for smaller elements and greater or equal
@@ -46,7 +44,6 @@ public static void quickSort(ArrayList<Wine> wines, int low, int high) {
         quickSort(wines, pivot + 1, high);
     }
 }
-
 public static int partition(ArrayList<Wine> wines, int low, int high) {
     // Create random value using high and low as boundaries
     int rand = Randomizer.nextInt(high - low + 1) + low;
@@ -62,11 +59,9 @@ public static int partition(ArrayList<Wine> wines, int low, int high) {
             Collections.swap(wines, left, right);
         }
     }
-
     Collections.swap(wines, left + 1, high);
     return left + 1;
 }
-
 // ----QUICK SORT RANDOM PIVOT WITH UNIQUE ALCOHOL VALUES----
 public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {
     if (low < high) {
@@ -77,7 +72,6 @@ public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high)
         quickSortUnique(alcohol, pivot + 1, high);
     }
 }
-
 public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) {
     // Create random value using high and low as boundaries
     int rand = Randomizer.nextInt(high - low + 1) + low;
@@ -85,7 +79,6 @@ public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) 
     Collections.swap(alcohol, rand, high);
     // First in current as the pivot
     double pivot = alcohol.get(low);
-
 
     int left = low - 1;
     for (int right = low; right < high; right++) {
@@ -95,7 +88,6 @@ public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) 
             Collections.swap(alcohol, left, right);
         }
     }
-
     Collections.swap(alcohol, left + 1, high);
     return left + 1;
 }

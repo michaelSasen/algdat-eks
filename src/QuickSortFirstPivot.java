@@ -37,21 +37,16 @@ void main() {
 * QUICK SORT ALGORITHM PIVOT FIRST
 ============================================================================== */
 public static void quickSort(ArrayList<Wine> wines, int low, int high) {
-
     if (low < high) {
         int pivot = partition(wines, low, high);
-
         // Recursion for smaller elements and greater or equal
         quickSort(wines, low, pivot - 1);
         quickSort(wines, pivot + 1, high);
     }
 }
-
-
 public static int partition(ArrayList<Wine> wines, int low, int high) {
     // First in current as the pivot
     double pivot = wines.get(low).alcohol();
-
     int left = low;
     for (int right = low + 1; right <= high; right++) {
         comparisons++;
@@ -60,26 +55,21 @@ public static int partition(ArrayList<Wine> wines, int low, int high) {
             Collections.swap(wines, left, right);
         }
     }
-
     Collections.swap(wines, low, left);
     return left;
 }
-
 // ----QUICK SORT FIRST PIVOT WITH UNIQUE ALCOHOL VALUES----
 public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {
     if (low < high) {
         int pivot = partitionUnique(alcohol, low, high);
-
         // Recursion for smaller elements and greater or equal
         quickSortUnique(alcohol, low, pivot - 1);
         quickSortUnique(alcohol, pivot + 1, high);
     }
 }
-
 public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) {
     // First in current as the pivot
     double pivot = alcohol.get(low);
-
     int left = low;
     for (int right = low + 1; right <= high; right++) {
         comparisons++;
@@ -88,7 +78,6 @@ public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) 
             Collections.swap(alcohol, left, right);
         }
     }
-
     Collections.swap(alcohol, low, left);
     return left;
 }
