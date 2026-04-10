@@ -24,6 +24,8 @@ void main() {
     IO.println("Comparisons: " + comparisons);
 
     IO.println("");
+    // Reset comparisons
+    comparisons = 0;
 
     timer.start();
     quickSortUnique(alcohol, 0, alcohol.size() - 1);
@@ -78,7 +80,7 @@ public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) 
     // Random in current as the pivot
     Collections.swap(alcohol, rand, high);
     // First in current as the pivot
-    double pivot = alcohol.get(low);
+    double pivot = alcohol.get(high);
 
     int left = low - 1;
     for (int right = low; right < high; right++) {

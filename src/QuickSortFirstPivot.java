@@ -23,6 +23,8 @@ void main() {
     IO.println("Comparisons: " + comparisons);
 
     IO.println("");
+    // Reset comparisons
+    comparisons = 0;
 
     timer.start();
     quickSortUnique(alcohol, 0, alcohol.size() - 1);
