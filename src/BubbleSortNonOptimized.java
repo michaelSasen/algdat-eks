@@ -6,35 +6,7 @@
 
 void main(){
 
-    // full dataset
-    ArrayList<Wine> wines = CSVImport.fileReader();
-    // hashset with only unique alcohol values
-    HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
 
-    // captures values returned by the methods
-    int[] result = bubbleSortNonOptimized(wines);
-    int[] uniqueResults = bubbleSortNonOptimizedUnique(uniqueAlcohol);
-
-    Timer timer = new Timer();
-    timer.start();
-    bubbleSortNonOptimized(wines);
-    timer.end();
-
-    IO.println("Full dataset: ");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Iterations: " + result[0]);
-    IO.println("Swaps: " + result[1]);
-
-    timer.start();
-    bubbleSortNonOptimizedUnique(uniqueAlcohol);
-    timer.end();
-
-    IO.println("");
-
-    IO.println("Unique alcohol values: ");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Iterations: " + uniqueResults[0]);
-    IO.println("Swaps: " + uniqueResults[1]);
 }
 
 /* ==============================================================================
