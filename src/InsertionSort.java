@@ -19,7 +19,7 @@ void main() {
     timer.start();
     insertionSort(wines);
     timer.end();
-
+    
     IO.println("Full dataset: ");
     IO.println("Time: " + timer.getTime());
     IO.println("Iterations: " + result[0]);
