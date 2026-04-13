@@ -47,7 +47,7 @@ void main(){
 ============================================================================== */
 
     public static void bubbleSortNonOptimized(ArrayList<Wine> wines) {
-        for (int i = 0; i < wines.size() - 1; i++) {  // (n-1) passes
+        for (int i = 0; i < wines.size() - 1; i++) {  // (n-1) comparisons per pass
             for (int j = 0; j < wines.size() - 1; j++) {  // (n-1) comparisons per pass
                 comparisons++;
                 // Compare adjacent elements and swap if out of order
@@ -63,7 +63,7 @@ void main(){
 ============================================================================== */
 
 public static void bubbleSortNonOptimizedUnique(ArrayList<Double> alcohol) {
-    for (int i = 0; i < alcohol.size() - 1; i++) {  // (n-1) passes
+    for (int i = 0; i < alcohol.size() - 1; i++) {  // (n-1) comparisons per pass
         for (int j = 0; j < alcohol.size() - 1; j++) {  // (n-1) comparisons per pass
             comparisons++;
             // Compare adjacent elements and swap if out of order
