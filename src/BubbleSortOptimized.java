@@ -1,57 +1,60 @@
 /* ==============================================================================
-* TASK 1: BUBBLE SORT NON OPTIMIZED ALGORITHM
+* TASK 1: BUBBLE SORT OPTIMIZED ALGORITHM
 * code inspiration source: LO 3_SortingAlgorithms.pptx by Prof. Dr. Rashmi Gupta
 * fetched: 25/03-26
+* Time Complexity: O(n) best case | O(n²) worst case - depends on input order
 ============================================================================== */
 
+static int comparisons = 0;
+
 void main() {
-// full dataset
+    // Load all wine records from CSV
     ArrayList<Wine> wines = CSVImport.fileReader();
-    // hashset with only unique alcohol values
+    // Extract unique alcohol values from dataset
     HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
+    // Casting the hashset to an arraylist
+    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
 
     Timer timer = new Timer();
+
+    comparisons = 0;
+
+    // Best case: Already sorted
+    Collections.sort(alcohol);
     timer.start();
-    int[] result = bubbleSortOptimized(wines);
+    bubbleSortOptimizedUnique(alcohol);
     timer.end();
 
-    IO.println("Full dataset: ");
+    IO.println("Best case (sorted data): O(n)");
     IO.println("Time: " + timer.getTime());
-    IO.println("Iterations: " + result[0]);
-    IO.println("Swaps: " + result[1]);
+    IO.println("Comparisons: " + comparisons);
 
-    timer.start();
-    int[] uniqueResults = bubbleSortOptimizedUnique(uniqueAlcohol);
-    timer.end();
-
+    comparisons = 0;
     IO.println("");
 
-    IO.println("Unique alcohol values: ");
+    // Worst case: Shuffled data
+    Collections.shuffle(alcohol);
+    timer.start();
+    bubbleSortOptimizedUnique(alcohol);
+    timer.end();
+
+    IO.println("Worst case (shuffled data): O(n²)");
     IO.println("Time: " + timer.getTime());
-    IO.println("Iterations: " + uniqueResults[0]);
-    IO.println("Swaps: " + uniqueResults[1]);
+    IO.println("Comparisons: " + comparisons);
 }
 
 /* ==============================================================================
-* BUBBLE SORT ALGORITHM
+* BUBBLE SORT ALGORITHM OPTIMIZED
 ============================================================================== */
 
-    // ----OPTIMIZED BUBBLE SORT----
-    public static int[] bubbleSortOptimized(ArrayList<Wine> wines) {
-        // implementing a swapped boolean
-        int iteration = 0;
-        int swaps = 0;
-
+    public static void bubbleSortOptimized(ArrayList<Wine> wines) {
         for (int i = 0; i < wines.size() - 1; i++) {
-            iteration++;
             boolean swapped = false;
-            // nested loop to compare the value of the next index
-            // -i to skip the sorted elements
             for (int j = 0; j < wines.size() - 1 - i; j++) {
+                comparisons++;
                 // proceeds if current value is larger than next value
                 if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
                     Collections.swap(wines, j, j +1);
-                    swaps++;
                     swapped = true;
                 }
             }
@@ -60,28 +63,20 @@ void main() {
                 break;
             }
         }
-        return new int[]{iteration, swaps};
-    } // End optimized sort
+    }
 
-// ----OPTIMIZED BUBBLE SORT UNIQUE ALCOHOL VALUES----
-public static int[] bubbleSortOptimizedUnique(HashSet<Double> uniqueAlcohol) {
-    // converting hashset to arraylist
-    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
+/* ==============================================================================
+* BUBBLE SORT ALGORITHM OPTIMIZED UNIQUE
+============================================================================== */
 
-    // implementing a swapped boolean
-    int iteration = 0;
-    int swaps = 0;
-
+public static void bubbleSortOptimizedUnique(ArrayList<Double> alcohol) {
     for (int i = 0; i < alcohol.size() - 1; i++) {
-        iteration++;
         boolean swapped = false;
-        // nested loop to compare the value of the next index
-        // -i to skip the sorted elements
         for (int j = 0; j < alcohol.size() - 1 - i; j++) {
+            comparisons++;
             // proceeds if current value is larger than next value
             if (alcohol.get(j) > alcohol.get(j + 1)) {
                 Collections.swap(alcohol, j, j +1);
-                swaps++;
                 swapped = true;
             }
         }
@@ -90,7 +85,6 @@ public static int[] bubbleSortOptimizedUnique(HashSet<Double> uniqueAlcohol) {
             break;
         }
     }
-    return new int[]{iteration, swaps};
-} // End optimized sort unique
+}
 
 
