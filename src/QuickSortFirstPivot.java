@@ -52,6 +52,7 @@ public static void quickSort(ArrayList<Wine> wines, int low, int high) {
         quickSort(wines, pivot + 1, high);
     }
 }
+
 public static int partition(ArrayList<Wine> wines, int low, int high) {
     // First in current as the pivot
     double pivot = wines.get(low).alcohol();
@@ -79,6 +80,7 @@ public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high)
         quickSortUnique(alcohol, pivot + 1, high);
     }
 }
+
 public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) {
     // First in current as the pivot
     double pivot = alcohol.get(low);
