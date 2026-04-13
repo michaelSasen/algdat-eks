@@ -2,35 +2,40 @@
 * TASK 4: QUICK SORT ALGORITHM PIVOT FIRST
 * code inspiration source: Geeksforgeeks
 * fetched: 25/03-26
+* Time Complexity: O(n log n) average | O(n²) worst case - depends on pivot placement
 ============================================================================== */
 static int comparisons = 0;
 
 void main() {
-// full dataset
+    // Load all wine records from CSV
     ArrayList<Wine> wines = CSVImport.fileReader();
-    // hashset with only unique alcohol values
+    // Extract unique alcohol values from dataset
     HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
-    // converting hashset to arraylist
+    // Casting the hashset to an arraylist
     ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
 
+    // Best case: sorted data (first element = minimum, worst case for first pivot)
+    Collections.sort(alcohol);
+    
     Timer timer = new Timer();
-    timer.start();
-    quickSort(wines, 0, wines.size() - 1);
-    timer.end();
-
-    IO.println("Full dataset: ");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + comparisons);
-
-    IO.println("");
-    // Reset comparisons
-    comparisons = 0;
-
     timer.start();
     quickSortUnique(alcohol, 0, alcohol.size() - 1);
     timer.end();
 
-    IO.println("Unique alcohol values: ");
+    IO.println("Worst case (sorted data - first pivot is minimum): O(n²)");
+    IO.println("Time: " + timer.getTime());
+    IO.println("Comparisons: " + comparisons);
+
+    IO.println("");
+    comparisons = 0;
+
+    // Average case: shuffled data (first element is random)
+    Collections.shuffle(alcohol);
+    timer.start();
+    quickSortUnique(alcohol, 0, alcohol.size() - 1);
+    timer.end();
+
+    IO.println("Average case (shuffled data - first pivot is random): O(n log n)");
     IO.println("Time: " + timer.getTime());
     IO.println("Comparisons: " + comparisons);
 }
@@ -38,6 +43,7 @@ void main() {
 /* ==============================================================================
 * QUICK SORT ALGORITHM PIVOT FIRST
 ============================================================================== */
+
 public static void quickSort(ArrayList<Wine> wines, int low, int high) {
     if (low < high) {
         int pivot = partition(wines, low, high);
@@ -60,7 +66,11 @@ public static int partition(ArrayList<Wine> wines, int low, int high) {
     Collections.swap(wines, low, left);
     return left;
 }
-// ----QUICK SORT FIRST PIVOT WITH UNIQUE ALCOHOL VALUES----
+
+/* ==============================================================================
+* QUICK SORT ALGORITHM PIVOT FIRST UNIQUE
+============================================================================== */
+
 public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {
     if (low < high) {
         int pivot = partitionUnique(alcohol, low, high);
