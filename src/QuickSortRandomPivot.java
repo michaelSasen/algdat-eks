@@ -6,6 +6,7 @@ import java.util.Random;
 * TASK 4: QUICK SORT ALGORITHM PIVOT RANDOM
 * code inspiration source: Geeksforgeeks
 * fetched: 25/03-26
+*
 ============================================================================== */
 
 public class QuickSortRandomPivot {
