@@ -1,12 +1,12 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 /* ==============================================================================
 * TASK 4: QUICK SORT ALGORITHM PIVOT LAST
 * code inspiration source: Geeksforgeeks
 * fetched: 25/03-26
 * Time Complexity: O(n log n) average | O(n²) worst case - depends on pivot placement
 ============================================================================== */
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class QuickSortLastPivot {
     static int comparisons = 0;

@@ -7,6 +7,7 @@ import java.util.Collections;
 * fetched: 25/03-26
 * Time Complexity: O(n log n) average | O(n²) worst case - depends on pivot placement
 ============================================================================== */
+
 public class QuickSortFirstPivot {
     static int comparisons = 0;
 
