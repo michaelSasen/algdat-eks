@@ -6,7 +6,7 @@ import java.util.Random;
 * TASK 4: QUICK SORT ALGORITHM PIVOT RANDOM
 * code inspiration source: Geeksforgeeks
 * fetched: 25/03-26
-*
+* Time Complexity: O(n log n) average | O(n²) worst case - depends on pivot placement
 ============================================================================== */
 
 public class QuickSortRandomPivot {
@@ -63,27 +63,30 @@ void main() {
  */
 
     /* ==============================================================================
-    * QUICK SORT ALGORITHM PIVOT RANDOM
-    ============================================================================== */
-    public static void quickSort(ArrayList<Wine> wines, int low, int high) {
-        if (low < high) {
-            int pivot = partition(wines, low, high);
-            // Recursion for smaller elements and greater or equal
-            quickSort(wines, low, pivot - 1);
-            quickSort(wines, pivot + 1, high);
-        }
-    }
+     * QUICK SORT ALGORITHM PIVOT RANDOM
+     ============================================================================== */
+     public static void quickSort(ArrayList<Wine> wines, int low, int high) {
+         // Time Complexity: T(n) = T(k) + T(n-k-1) + O(n)
+         // where k is partition result, O(n) for partition work
+         if (low < high) {
+             int pivot = partition(wines, low, high);
+             // Recursion for smaller elements and greater or equal
+             quickSort(wines, low, pivot - 1);
+             quickSort(wines, pivot + 1, high);
+         }
+     }
 
     public static int partition(ArrayList<Wine> wines, int low, int high) {
+        // Partition: O(n) - single pass through range
         // Create random value using high and low as boundaries
         int rand = Randomizer.nextInt(high - low + 1) + low;
-        // Random in current as the pivot
+        // Move random element to end, then use as pivot
         Collections.swap(wines, rand, high);
         double pivot = wines.get(high).alcohol();
 
         int left = low - 1;
         for (int right = low; right < high; right++) {
-            comparisons++;
+            comparisons++;  // Each comparison counted: O(n) comparisons
             if (wines.get(right).alcohol() < pivot) {
                 left++;
                 Collections.swap(wines, left, right);
@@ -93,8 +96,13 @@ void main() {
         return left + 1;
     }
 
-    // ----QUICK SORT RANDOM PIVOT WITH UNIQUE ALCOHOL VALUES----
+    /* ==============================================================================
+   * QUICK SORT ALGORITHM PIVOT RANDOM UNIQUE VALUES
+   ============================================================================== */
+
     public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {
+        // Time Complexity: T(n) = T(k) + T(n-k-1) + O(n)
+        // where k is partition result, O(n) for partition work
         if (low < high) {
             int pivot = partitionUnique(alcohol, low, high);
 
@@ -105,15 +113,15 @@ void main() {
     }
 
     public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) {
+        // Partition: O(n) - single pass through range
         // Create random value using high and low as boundaries
         int rand = Randomizer.nextInt(high - low + 1) + low;
-        // Random in current as the pivot
+        // Move random element to end, then use as pivot
         Collections.swap(alcohol, rand, high);
-        // First in current as the pivot
         double pivot = alcohol.get(high);
         int left = low - 1;
         for (int right = low; right < high; right++) {
-            comparisons++;
+            comparisons++;  // Each comparison counted: O(n) comparisons
             if (alcohol.get(right) < pivot) {
                 left++;
                 Collections.swap(alcohol, left, right);

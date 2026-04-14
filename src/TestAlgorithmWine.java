@@ -157,7 +157,7 @@ public static void testMergeSortUnique(ArrayList<Double> dataset, int repetition
 
         Timer timer = new Timer();
         timer.start();
-        MergeSort.mergeSortUniqueAlcohol(uniqueSet);
+        MergeSort.mergeSortUnique(uniqueSet);
         timer.end();
 
         totalTime += timer.getTime();

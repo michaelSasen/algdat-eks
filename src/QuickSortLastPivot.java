@@ -97,7 +97,7 @@ void main() {
     }
 
 /* ==============================================================================
-* QUICK SORT ALGORITHM PIVOT LAST UNIQUE
+* QUICK SORT ALGORITHM PIVOT LAST UNIQUE VALUES
 ============================================================================== */
 
     public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {

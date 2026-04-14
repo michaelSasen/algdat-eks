@@ -1,17 +1,17 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+
 /* ==============================================================================
 * TASK 3: MERGE SORT ALGORITHM
 * code inspiration source: LO 3_SortingAlgorithms.pptx by Prof. Dr. Rashmi Gupta
-* fetched: 26/03-26
+* fetched: 26/03/2026
+* Time Complexity: O(n log n) all cases - divide and conquer pattern
 ============================================================================== */
-
-import java.util.ArrayList;
-import java.util.HashSet;
 
 public class MergeSort {
     // merge counters for operations
     public static int mergeCount = 0;
     public static int uniqueMergeCount = 0;
-
 
 /*
 void main() {
@@ -19,56 +19,46 @@ void main() {
     ArrayList<Wine> wines = CSVImport.fileReader();
     HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
 
-    // reset counter befor sorting
-    mergeCount = 0;
-    uniqueMergeCount = 0;
-
-    int[] result = mergeSort(wines);
-    int[] uniqueResults = mergeSortUniqueAlcohol(uniqueAlcohol);
-
     Timer timer = new Timer();
 
     // reset counter to avoid adding merge counts from previous runs
     mergeCount = 0;
+
     timer.start();
     mergeSort(wines);
     timer.end();
 
     IO.println("Full dataset: ");
     IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + result[0]);
-    IO.println("Moves: " + result[1]);
-    IO.println("Merge operations: " + mergeCount); // ADDED
+    IO.println("Merge operations: " + mergeCount);
 
     // reset counter to avoid adding merge counts from previous runs
     uniqueMergeCount = 0;
+
     timer.start();
-    mergeSortUniqueAlcohol(uniqueAlcohol);
+    mergeSortUnique(uniqueAlcohol);
     timer.end();
 
     IO.println("");
 
     IO.println("Unique alcohol values: ");
     IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + uniqueResults[0]);
-    IO.println("Moves: " + uniqueResults[1]);
-    IO.println("Merge operations: " + uniqueMergeCount); // ADDED
+    IO.println("Merge operations: " + uniqueMergeCount);
 }
+*/
 
 /* ==============================================================================
 * MERGE SORT ALGORITHM
 ============================================================================== */
 
-
-    // ---- MERGE SORT FULL DATASET ----
-    public static int[] mergeSort(ArrayList<Wine> wines) {
-        int[] counts = new int[2];
-        mergeSortRecursive(wines, counts);
-        return counts;
+    // Time Complexity: O(n log n) - divide and conquer pattern
+    public static void mergeSort(ArrayList<Wine> wines) {
+        mergeSortRecursive(wines);
     }
 
-    private static void mergeSortRecursive(ArrayList<Wine> wines, int[] counts) {
-        // stops if last element
+    // Time Complexity: O(n log n) - divides array in half recursively, merges in O(n)
+    private static void mergeSortRecursive(ArrayList<Wine> wines) {
+        // Base case: array of size 0 or 1 is already sorted
         if (wines.size() <= 1) {
             return;
         }
@@ -87,15 +77,16 @@ void main() {
         }
 
         // recursive sorting
-        mergeSortRecursive(leftHalf, counts);
-        mergeSortRecursive(rightHalf, counts);
+        mergeSortRecursive(leftHalf);
+        mergeSortRecursive(rightHalf);
 
         // merge back to original
-        mergeSortedWineLists(wines, leftHalf, rightHalf, counts);
+        mergeSortedLists(wines, leftHalf, rightHalf);
     }
 
-    private static void mergeSortedWineLists(ArrayList<Wine> wines, ArrayList<Wine> leftHalf, ArrayList<Wine> rightHalf, int[] stats) {
-        // count +one merge operation when this method is called
+    // Time Complexity: O(n) - single pass to merge two sorted halves
+    private static void mergeSortedLists(ArrayList<Wine> wines, ArrayList<Wine> leftHalf, ArrayList<Wine> rightHalf) {
+        // increment merge operation counter: tracks how many times merge is performed
         mergeCount++;
 
         int leftIndex = 0;
@@ -103,8 +94,6 @@ void main() {
         int currentIndex = 0;
 
         while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
-            stats[0]++; // comparison
-
             if (leftHalf.get(leftIndex).alcohol() <= rightHalf.get(rightIndex).alcohol()) {
                 wines.set(currentIndex, leftHalf.get(leftIndex));
                 leftIndex++;
@@ -114,33 +103,34 @@ void main() {
             }
 
             currentIndex++;
-            stats[1]++; // move
         }
 
         while (leftIndex < leftHalf.size()) {
             wines.set(currentIndex, leftHalf.get(leftIndex));
             leftIndex++;
             currentIndex++;
-            stats[1]++;
         }
 
         while (rightIndex < rightHalf.size()) {
             wines.set(currentIndex, rightHalf.get(rightIndex));
             rightIndex++;
             currentIndex++;
-            stats[1]++;
         }
     }
 
-    // ---- MERGE SORT UNIQUE ALCOHOL VALUES ----
-    public static int[] mergeSortUniqueAlcohol(HashSet<Double> uniqueAlcohol) {
+    /* ==============================================================================
+    * MERGE SORT ALGORITHM UNIQUE
+    ============================================================================== */
+
+    // Time Complexity: O(n log n) - divide and conquer pattern
+    public static void mergeSortUnique(HashSet<Double> uniqueAlcohol) {
         ArrayList<Double> alcoholValues = new ArrayList<>(uniqueAlcohol);
-        int[] stats = new int[2];
-        mergeSortUniqueRecursive(alcoholValues, stats);
-        return stats;
+        mergeSortUniqueRecursive(alcoholValues);
     }
 
-    private static void mergeSortUniqueRecursive(ArrayList<Double> alcoholValues, int[] stats) {
+    // Time Complexity: O(n log n) - divides array in half recursively, merges in O(n)
+    private static void mergeSortUniqueRecursive(ArrayList<Double> alcoholValues) {
+        // Base case: array of size 0 or 1 is already sorted
         if (alcoholValues.size() <= 1) {
             return;
         }
@@ -157,14 +147,15 @@ void main() {
             rightHalf.add(alcoholValues.get(i));
         }
 
-        mergeSortUniqueRecursive(leftHalf, stats);
-        mergeSortUniqueRecursive(rightHalf, stats);
+        mergeSortUniqueRecursive(leftHalf);
+        mergeSortUniqueRecursive(rightHalf);
 
-        mergeSortedAlcoholLists(alcoholValues, leftHalf, rightHalf, stats);
+        mergeSortedListsUnique(alcoholValues, leftHalf, rightHalf);
     }
 
-    private static void mergeSortedAlcoholLists(ArrayList<Double> alcoholValues, ArrayList<Double> leftHalf, ArrayList<Double> rightHalf, int[] stats) {
-        // count +one merge operation when this method is called
+    // Time Complexity: O(n) - single pass to merge two sorted halves
+    private static void mergeSortedListsUnique(ArrayList<Double> alcoholValues, ArrayList<Double> leftHalf, ArrayList<Double> rightHalf) {
+        // increment merge operation counter: tracks how many times merge is performed
         uniqueMergeCount++;
 
         int leftIndex = 0;
@@ -172,8 +163,6 @@ void main() {
         int currentIndex = 0;
 
         while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
-            stats[0]++; // comparison
-
             if (leftHalf.get(leftIndex) <= rightHalf.get(rightIndex)) {
                 alcoholValues.set(currentIndex, leftHalf.get(leftIndex));
                 leftIndex++;
@@ -183,21 +172,18 @@ void main() {
             }
 
             currentIndex++;
-            stats[1]++; // move
         }
 
         while (leftIndex < leftHalf.size()) {
             alcoholValues.set(currentIndex, leftHalf.get(leftIndex));
             leftIndex++;
             currentIndex++;
-            stats[1]++;
         }
 
         while (rightIndex < rightHalf.size()) {
             alcoholValues.set(currentIndex, rightHalf.get(rightIndex));
             rightIndex++;
             currentIndex++;
-            stats[1]++;
         }
     }
 }
