@@ -26,6 +26,7 @@ public class QuickSortLastPivot {
     }
 
 /*
+
 static int comparisons = 0;
 
 void main() {

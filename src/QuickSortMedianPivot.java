@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /* ==============================================================================
-* TASK 4: QUICK SORT ALGORITHM PIVOT RANDOM
+* TASK 4: QUICK SORT ALGORITHM PIVOT MEDIAN
 * code inspiration source: Geeksforgeeks
 * fetched: 25/03-26
 *
@@ -24,7 +24,9 @@ import java.util.Collections;
             quickSortUnique(alcohol, 0, alcohol.size() - 1);
         }
     }
+
  /*
+
     static int comparisons = 0;
 
     void main() {
@@ -144,7 +146,6 @@ import java.util.Collections;
         Collections.swap(alcohol, medianIndex, high);
         // First in current as the pivot
         double pivot = alcohol.get(high);
-
         int left = low - 1;
         for (int right = low; right < high; right++) {
             comparisons++;
