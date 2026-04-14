@@ -45,6 +45,8 @@ void main() {
 ============================================================================== */
 
 public static void quickSort(ArrayList<Wine> wines, int low, int high) {
+    // Time Complexity: T(n) = T(k) + T(n-k-1) + O(n)
+    // where k is partition result, O(n) for partition work
     if (low < high) {
         int pivot = partition(wines, low, high);
         // Recursion for smaller elements and greater or equal
@@ -54,14 +56,15 @@ public static void quickSort(ArrayList<Wine> wines, int low, int high) {
 }
 
 public static int partition(ArrayList<Wine> wines, int low, int high) {
+    // Partition: O(n) - single pass through range
     // First in current as the pivot
     double pivot = wines.get(low).alcohol();
     int left = low;
     for (int right = low + 1; right <= high; right++) {
-        comparisons++;
+        comparisons++;  // Each comparison counted: O(n) comparisons
         if (wines.get(right).alcohol() < pivot) {
             left++;
-            Collections.swap(wines, left, right);
+            Collections.swap(wines, left, right);  // O(1) per swap
         }
     }
     Collections.swap(wines, low, left);
@@ -73,6 +76,8 @@ public static int partition(ArrayList<Wine> wines, int low, int high) {
 ============================================================================== */
 
 public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {
+    // Time Complexity: T(n) = T(k) + T(n-k-1) + O(n)
+    // where k is partition result, O(n) for partition work
     if (low < high) {
         int pivot = partitionUnique(alcohol, low, high);
         // Recursion for smaller elements and greater or equal
@@ -82,14 +87,15 @@ public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high)
 }
 
 public static int partitionUnique(ArrayList<Double> alcohol, int low, int high) {
+    // Partition: O(n) - single pass through range
     // First in current as the pivot
     double pivot = alcohol.get(low);
     int left = low;
     for (int right = low + 1; right <= high; right++) {
-        comparisons++;
+        comparisons++;  // Each comparison counted: O(n) comparisons
         if (alcohol.get(right) < pivot) {
             left++;
-            Collections.swap(alcohol, left, right);
+            Collections.swap(alcohol, left, right);  // O(1) per swap
         }
     }
     Collections.swap(alcohol, low, left);

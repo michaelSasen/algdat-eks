@@ -73,6 +73,3 @@ public static void bubbleSortNonOptimizedUnique(ArrayList<Double> alcohol) {
         }
     }
 }
-
-
-
