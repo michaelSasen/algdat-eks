@@ -4,10 +4,16 @@
 * fetched: 26/03-26
 ============================================================================== */
 
-// merge counters for operations
-public static int mergeCount = 0;
-public static int uniqueMergeCount = 0;
+import java.util.ArrayList;
+import java.util.HashSet;
 
+public class MergeSort {
+    // merge counters for operations
+    public static int mergeCount = 0;
+    public static int uniqueMergeCount = 0;
+
+
+/*
 void main() {
 
     ArrayList<Wine> wines = CSVImport.fileReader();
@@ -54,143 +60,144 @@ void main() {
 ============================================================================== */
 
 
-// ---- MERGE SORT FULL DATASET ----
-public static int[] mergeSort(ArrayList<Wine> wines) {
-    int[] counts = new int[2];
-    mergeSortRecursive(wines, counts);
-    return counts;
-}
-
-private static void mergeSortRecursive(ArrayList<Wine> wines, int[] counts) {
-    // stops if last element
-    if (wines.size() <= 1) {
-        return;
+    // ---- MERGE SORT FULL DATASET ----
+    public static int[] mergeSort(ArrayList<Wine> wines) {
+        int[] counts = new int[2];
+        mergeSortRecursive(wines, counts);
+        return counts;
     }
 
-    // split list in half
-    int middleIndex = wines.size() / 2;
-    ArrayList<Wine> leftHalf = new ArrayList<>();
-    ArrayList<Wine> rightHalf = new ArrayList<>();
+    private static void mergeSortRecursive(ArrayList<Wine> wines, int[] counts) {
+        // stops if last element
+        if (wines.size() <= 1) {
+            return;
+        }
 
-    for (int i = 0; i < middleIndex; i++) {
-        leftHalf.add(wines.get(i));
+        // split list in half
+        int middleIndex = wines.size() / 2;
+        ArrayList<Wine> leftHalf = new ArrayList<>();
+        ArrayList<Wine> rightHalf = new ArrayList<>();
+
+        for (int i = 0; i < middleIndex; i++) {
+            leftHalf.add(wines.get(i));
+        }
+
+        for (int i = middleIndex; i < wines.size(); i++) {
+            rightHalf.add(wines.get(i));
+        }
+
+        // recursive sorting
+        mergeSortRecursive(leftHalf, counts);
+        mergeSortRecursive(rightHalf, counts);
+
+        // merge back to original
+        mergeSortedWineLists(wines, leftHalf, rightHalf, counts);
     }
 
-    for (int i = middleIndex; i < wines.size(); i++) {
-        rightHalf.add(wines.get(i));
-    }
+    private static void mergeSortedWineLists(ArrayList<Wine> wines, ArrayList<Wine> leftHalf, ArrayList<Wine> rightHalf, int[] stats) {
+        // count +one merge operation when this method is called
+        mergeCount++;
 
-    // recursive sorting
-    mergeSortRecursive(leftHalf, counts);
-    mergeSortRecursive(rightHalf, counts);
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int currentIndex = 0;
 
-    // merge back to original
-    mergeSortedWineLists(wines, leftHalf, rightHalf, counts);
-}
+        while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
+            stats[0]++; // comparison
 
-private static void mergeSortedWineLists(ArrayList<Wine> wines, ArrayList<Wine> leftHalf, ArrayList<Wine> rightHalf, int[] stats) {
-    // count +one merge operation when this method is called
-    mergeCount++;
+            if (leftHalf.get(leftIndex).alcohol() <= rightHalf.get(rightIndex).alcohol()) {
+                wines.set(currentIndex, leftHalf.get(leftIndex));
+                leftIndex++;
+            } else {
+                wines.set(currentIndex, rightHalf.get(rightIndex));
+                rightIndex++;
+            }
 
-    int leftIndex = 0;
-    int rightIndex = 0;
-    int currentIndex = 0;
+            currentIndex++;
+            stats[1]++; // move
+        }
 
-    while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
-        stats[0]++; // comparison
-
-        if (leftHalf.get(leftIndex).alcohol() <= rightHalf.get(rightIndex).alcohol()) {
+        while (leftIndex < leftHalf.size()) {
             wines.set(currentIndex, leftHalf.get(leftIndex));
             leftIndex++;
-        } else {
+            currentIndex++;
+            stats[1]++;
+        }
+
+        while (rightIndex < rightHalf.size()) {
             wines.set(currentIndex, rightHalf.get(rightIndex));
             rightIndex++;
+            currentIndex++;
+            stats[1]++;
+        }
+    }
+
+    // ---- MERGE SORT UNIQUE ALCOHOL VALUES ----
+    public static int[] mergeSortUniqueAlcohol(HashSet<Double> uniqueAlcohol) {
+        ArrayList<Double> alcoholValues = new ArrayList<>(uniqueAlcohol);
+        int[] stats = new int[2];
+        mergeSortUniqueRecursive(alcoholValues, stats);
+        return stats;
+    }
+
+    private static void mergeSortUniqueRecursive(ArrayList<Double> alcoholValues, int[] stats) {
+        if (alcoholValues.size() <= 1) {
+            return;
         }
 
-        currentIndex++;
-        stats[1]++; // move
+        int middleIndex = alcoholValues.size() / 2;
+        ArrayList<Double> leftHalf = new ArrayList<>();
+        ArrayList<Double> rightHalf = new ArrayList<>();
+
+        for (int i = 0; i < middleIndex; i++) {
+            leftHalf.add(alcoholValues.get(i));
+        }
+
+        for (int i = middleIndex; i < alcoholValues.size(); i++) {
+            rightHalf.add(alcoholValues.get(i));
+        }
+
+        mergeSortUniqueRecursive(leftHalf, stats);
+        mergeSortUniqueRecursive(rightHalf, stats);
+
+        mergeSortedAlcoholLists(alcoholValues, leftHalf, rightHalf, stats);
     }
 
-    while (leftIndex < leftHalf.size()) {
-        wines.set(currentIndex, leftHalf.get(leftIndex));
-        leftIndex++;
-        currentIndex++;
-        stats[1]++;
-    }
+    private static void mergeSortedAlcoholLists(ArrayList<Double> alcoholValues, ArrayList<Double> leftHalf, ArrayList<Double> rightHalf, int[] stats) {
+        // count +one merge operation when this method is called
+        uniqueMergeCount++;
 
-    while (rightIndex < rightHalf.size()) {
-        wines.set(currentIndex, rightHalf.get(rightIndex));
-        rightIndex++;
-        currentIndex++;
-        stats[1]++;
-    }
-}
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int currentIndex = 0;
 
-// ---- MERGE SORT UNIQUE ALCOHOL VALUES ----
-public static int[] mergeSortUniqueAlcohol(HashSet<Double> uniqueAlcohol) {
-    ArrayList<Double> alcoholValues = new ArrayList<>(uniqueAlcohol);
-    int[] stats = new int[2];
-    mergeSortUniqueRecursive(alcoholValues, stats);
-    return stats;
-}
+        while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
+            stats[0]++; // comparison
 
-private static void mergeSortUniqueRecursive(ArrayList<Double> alcoholValues, int[] stats) {
-    if (alcoholValues.size() <= 1) {
-        return;
-    }
+            if (leftHalf.get(leftIndex) <= rightHalf.get(rightIndex)) {
+                alcoholValues.set(currentIndex, leftHalf.get(leftIndex));
+                leftIndex++;
+            } else {
+                alcoholValues.set(currentIndex, rightHalf.get(rightIndex));
+                rightIndex++;
+            }
 
-    int middleIndex = alcoholValues.size() / 2;
-    ArrayList<Double> leftHalf = new ArrayList<>();
-    ArrayList<Double> rightHalf = new ArrayList<>();
+            currentIndex++;
+            stats[1]++; // move
+        }
 
-    for (int i = 0; i < middleIndex; i++) {
-        leftHalf.add(alcoholValues.get(i));
-    }
-
-    for (int i = middleIndex; i < alcoholValues.size(); i++) {
-        rightHalf.add(alcoholValues.get(i));
-    }
-
-    mergeSortUniqueRecursive(leftHalf, stats);
-    mergeSortUniqueRecursive(rightHalf, stats);
-
-    mergeSortedAlcoholLists(alcoholValues, leftHalf, rightHalf, stats);
-}
-
-private static void mergeSortedAlcoholLists(ArrayList<Double> alcoholValues, ArrayList<Double> leftHalf, ArrayList<Double> rightHalf, int[] stats) {
-    // count +one merge operation when this method is called
-    uniqueMergeCount++;
-
-    int leftIndex = 0;
-    int rightIndex = 0;
-    int currentIndex = 0;
-
-    while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
-        stats[0]++; // comparison
-
-        if (leftHalf.get(leftIndex) <= rightHalf.get(rightIndex)) {
+        while (leftIndex < leftHalf.size()) {
             alcoholValues.set(currentIndex, leftHalf.get(leftIndex));
             leftIndex++;
-        } else {
-            alcoholValues.set(currentIndex, rightHalf.get(rightIndex));
-            rightIndex++;
+            currentIndex++;
+            stats[1]++;
         }
 
-        currentIndex++;
-        stats[1]++; // move
-    }
-
-    while (leftIndex < leftHalf.size()) {
-        alcoholValues.set(currentIndex, leftHalf.get(leftIndex));
-        leftIndex++;
-        currentIndex++;
-        stats[1]++;
-    }
-
-    while (rightIndex < rightHalf.size()) {
-        alcoholValues.set(currentIndex, rightHalf.get(rightIndex));
-        rightIndex++;
-        currentIndex++;
-        stats[1]++;
+        while (rightIndex < rightHalf.size()) {
+            alcoholValues.set(currentIndex, rightHalf.get(rightIndex));
+            rightIndex++;
+            currentIndex++;
+            stats[1]++;
+        }
     }
 }

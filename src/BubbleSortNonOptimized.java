@@ -5,8 +5,13 @@
 * Time Complexity: O(n²) - comparisons = (n-1)² regardless of input order
 ============================================================================== */
 
-static int comparisons = 0;
+import java.util.ArrayList;
+import java.util.Collections;
 
+public class BubbleSortNonOptimized {
+    static int comparisons = 0;
+
+/*
 void main(){
     // Load all wine records from CSV
     ArrayList<Wine> wines = CSVImport.fileReader();
@@ -52,7 +57,7 @@ void main(){
                 comparisons++;
                 // Compare adjacent elements and swap if out of order
                 if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
-                    Collections.swap(wines, j, j +1);
+                    Collections.swap(wines, j, j + 1);
                 }
             }
         }
@@ -62,13 +67,14 @@ void main(){
 * BUBBLE SORT ALGORITHM NON OPTIMIZED UNIQUE ALCOHOL VALUES
 ============================================================================== */
 
-public static void bubbleSortNonOptimizedUnique(ArrayList<Double> alcohol) {
-    for (int i = 0; i < alcohol.size() - 1; i++) {  // (n-1) comparisons per pass
-        for (int j = 0; j < alcohol.size() - 1; j++) {  // (n-1) comparisons per pass
-            comparisons++;
-            // Compare adjacent elements and swap if out of order
-            if (alcohol.get(j) > alcohol.get(j + 1)) {
-                Collections.swap(alcohol, j, j +1);
+    public static void bubbleSortNonOptimizedUnique(ArrayList<Double> alcohol) {
+        for (int i = 0; i < alcohol.size() - 1; i++) {  // (n-1) comparisons per pass
+            for (int j = 0; j < alcohol.size() - 1; j++) {  // (n-1) comparisons per pass
+                comparisons++;
+                // Compare adjacent elements and swap if out of order
+                if (alcohol.get(j) > alcohol.get(j + 1)) {
+                    Collections.swap(alcohol, j, j + 1);
+                }
             }
         }
     }
