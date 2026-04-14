@@ -2,86 +2,81 @@
 * TASK 2: INSERTION SORT ALGORITHM
 * code inspiration source: LO 3_SortingAlgorithms.pptx by Prof. Dr. Rashmi Gupta
 * fetched: 25/03-26
+* Time Complexity: O(n) best case | O(n²) worst case - depends on input order
 ============================================================================== */
 
+static int comparisons = 0;
+
 void main() {
-
-    // full dataset
+    // Load all wine records from CSV
     ArrayList<Wine> wines = CSVImport.fileReader();
-    // hashset with only unique alcohol values
+    // Extract unique alcohol values from dataset
     HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
-
-    // captures values returned by the methods
-    int[] result = insertionSort(wines);
-    int[] uniqueResults = insertionSortUniqueAlcohol(uniqueAlcohol);
+    // Casting the hashset to an arraylist
+    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
 
     Timer timer = new Timer();
-    timer.start();
-    insertionSort(wines);
-    timer.end();
-    
-    IO.println("Full dataset: ");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Iterations: " + result[0]);
-    IO.println("Swaps: " + result[1]);
 
+    // Best case: Already sorted
+    Collections.sort(alcohol);
+    comparisons = 0;
     timer.start();
-    insertionSortUniqueAlcohol(uniqueAlcohol);
+    insertionSortUniqueAlcohol(alcohol);
     timer.end();
+
+    IO.println("Best case (sorted data): O(n)");
+    IO.println("Time: " + timer.getTime());
+    IO.println("Comparisons: " + comparisons);
 
     IO.println("");
+    comparisons = 0;
 
-    IO.println("Unique alcohol values: ");
+    // Worst case: Shuffled data
+    Collections.shuffle(alcohol);
+    timer.start();
+    insertionSortUniqueAlcohol(alcohol);
+    timer.end();
+
+    IO.println("Worst case (shuffled data): O(n²)");
     IO.println("Time: " + timer.getTime());
-    IO.println("Iterations: " + uniqueResults[0]);
-    IO.println("Swaps: " + uniqueResults[1]);
+    IO.println("Comparisons: " + comparisons);
 }
 
 /* ==============================================================================
 * INSERTION SORT ALGORITHM
 ============================================================================== */
 
-// ----INSERTION SORT FULL DATASET----
-public static int[] insertionSort(ArrayList<Wine> wines) {
-    // implementing a swapped boolean
-    int iteration = 0;
-    int swaps = 0;
-        // insertion sort assumes first index is sorted, hence the int = 1
-        for (int i = 1; i < wines.size(); i++) {
-            iteration++;
-            int j = i - 1;
-            Wine curr = wines.get(i);
-            double currAlc = curr.alcohol();
+public static void insertionSort(ArrayList<Wine> wines) {
+    for (int i = 1; i < wines.size(); i++) {  // n-1 passes
+        int j = i - 1;
+        Wine curr = wines.get(i);
+        double currAlc = curr.alcohol();
 
-            while (j >= 0 && wines.get(j).alcohol() > currAlc) {
-                wines.set(j + 1, wines.get(j));
-                swaps++;
-                j--;
-            }
-            wines.set(j + 1, curr);
+        while (j >= 0 && wines.get(j).alcohol() > currAlc) {
+            comparisons++;
+            wines.set(j + 1, wines.get(j));
+            j--;
         }
-    return new int[]{iteration, swaps};
-} // End insertion sort
+        wines.set(j + 1, curr);
+    }
+}
 
-// ----INSERTION SORT UNIQUE VALUES----
-public static int[] insertionSortUniqueAlcohol (HashSet<Double> uniqueAlcohol) {
-    // converting hashset to arraylist
-    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
-    int iteration = 0;
-    int swaps = 0;
-    for (int i = 1; i < alcohol.size(); i++) {
-        iteration++;
+/* ==============================================================================
+* INSERTION SORT ALGORITHM UNIQUE
+============================================================================== */
+
+public static void insertionSortUniqueAlcohol(ArrayList<Double> alcohol) {
+    for (int i = 1; i < alcohol.size(); i++) {  // n-1 passes
         int j = i - 1;
         Double curr = alcohol.get(i);
         while (j >= 0 && alcohol.get(j) > curr) {
+            comparisons++;
             alcohol.set(j + 1, alcohol.get(j));
-            swaps++;
             j--;
         }
         alcohol.set(j + 1, curr);
     }
-    return new int[]{iteration, swaps};
-} // End insertion sort unique alcohol values
+}
 
 
 

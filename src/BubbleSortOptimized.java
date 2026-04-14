@@ -48,9 +48,9 @@ void main() {
 ============================================================================== */
 
     public static void bubbleSortOptimized(ArrayList<Wine> wines) {
-        for (int i = 0; i < wines.size() - 1; i++) {
+        for (int i = 0; i < wines.size() - 1; i++) {  // (n-1) comparisons per pass
             boolean swapped = false;
-            for (int j = 0; j < wines.size() - 1 - i; j++) {
+            for (int j = 0; j < wines.size() - 1 - i; j++) {  // (n-1) comparisons per pass
                 comparisons++;
                 // proceeds if current value is larger than next value
                 if (wines.get(j).alcohol() > wines.get(j + 1).alcohol()) {
@@ -70,9 +70,9 @@ void main() {
 ============================================================================== */
 
 public static void bubbleSortOptimizedUnique(ArrayList<Double> alcohol) {
-    for (int i = 0; i < alcohol.size() - 1; i++) {
+    for (int i = 0; i < alcohol.size() - 1; i++) {  // (n-1) passes max
         boolean swapped = false;
-        for (int j = 0; j < alcohol.size() - 1 - i; j++) {
+        for (int j = 0; j < alcohol.size() - 1 - i; j++) {  // (n-1) comparisons per pass
             comparisons++;
             // proceeds if current value is larger than next value
             if (alcohol.get(j) > alcohol.get(j + 1)) {
