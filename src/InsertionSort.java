@@ -77,6 +77,3 @@ public static void insertionSortUniqueAlcohol(ArrayList<Double> alcohol) {
         alcohol.set(j + 1, curr);
     }
 }
-
-
-
