@@ -76,20 +76,6 @@ public class SortTest {
                 "Comparisons: " + InsertionSort.comparisons);
     }
 
-    public static void runMergeSortFull() {
-        Timer timer;
-        
-        ArrayList<Wine> winesForMergeSort = new ArrayList<>(ORIGINAL_WINES);
-        Collections.shuffle(winesForMergeSort);
-        MergeSort.mergeCount = 0;
-        timer = new Timer();
-        timer.start();
-        MergeSort.mergeSort(winesForMergeSort);
-        timer.end();
-        printResult("MergeSort-Full", timer.getTime(),
-                "Merge operations: " + MergeSort.mergeCount);
-    }
-
     public static void runQuickSortFirstPivotFull() {
         Timer timer;
         
@@ -144,6 +130,20 @@ public class SortTest {
         timer.end();
         printResult("QuickSort-RandomPivot-Full", timer.getTime(),
                 "Comparisons: " + QuickSortRandomPivot.comparisons);
+    }
+
+    public static void runMergeSortFull() {
+        Timer timer;
+
+        ArrayList<Wine> winesForMergeSort = new ArrayList<>(ORIGINAL_WINES);
+        Collections.shuffle(winesForMergeSort);
+        MergeSort.mergeCount = 0;
+        timer = new Timer();
+        timer.start();
+        MergeSort.mergeSort(winesForMergeSort);
+        timer.end();
+        printResult("MergeSort-Full", timer.getTime(),
+                "Merge operations: " + MergeSort.mergeCount);
     }
 
     public static void runAllFullDatasetTests() {
@@ -218,19 +218,6 @@ public class SortTest {
                 "Comparisons: " + InsertionSort.comparisons);
     }
 
-    public static void runMergeSortUnique() {
-        Timer timer;
-        
-        HashSet<Double> uniqueAlcoholForMergeSort = new HashSet<>(ORIGINAL_UNIQUE_ALCOHOL);
-        MergeSort.uniqueMergeCount = 0;
-        timer = new Timer();
-        timer.start();
-        MergeSort.mergeSortUnique(uniqueAlcoholForMergeSort);
-        timer.end();
-        printResult("MergeSort-Unique", timer.getTime(),
-                "Merge operations: " + MergeSort.uniqueMergeCount);
-    }
-
     public static void runQuickSortFirstPivotUnique() {
         Timer timer;
         
@@ -281,6 +268,19 @@ public class SortTest {
         timer.end();
         printResult("QuickSort-RandomPivot-Unique", timer.getTime(),
                 "Comparisons: " + QuickSortRandomPivot.comparisons);
+    }
+
+    public static void runMergeSortUnique() {
+        Timer timer;
+
+        HashSet<Double> uniqueAlcoholForMergeSort = new HashSet<>(ORIGINAL_UNIQUE_ALCOHOL);
+        MergeSort.uniqueMergeCount = 0;
+        timer = new Timer();
+        timer.start();
+        MergeSort.mergeSortUnique(uniqueAlcoholForMergeSort);
+        timer.end();
+        printResult("MergeSort-Unique", timer.getTime(),
+                "Merge operations: " + MergeSort.uniqueMergeCount);
     }
 
     public static void runAllUniqueDatasetTests() {
