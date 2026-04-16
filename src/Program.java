@@ -16,15 +16,15 @@ void main() {
 
         switch (choice) {
             case 1:
-                BenchmarkAlgorithms.runAllFullDatasetTests();
+                RunBenchmark.runAllFullDatasetTests();
                 break;
 
             case 2:
-                BenchmarkAlgorithms.runAllUniqueDatasetTests();
+                RunBenchmark.runAllUniqueDatasetTests();
                 break;
 
             case 3:
-                BenchmarkAlgorithms.runAllSortingAlgorithms();
+                RunBenchmark.runAllSortingAlgorithms();
                 break;
 
             case 4:
