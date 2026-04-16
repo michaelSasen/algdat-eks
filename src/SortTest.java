@@ -17,10 +17,8 @@ public class SortTest {
         BubbleSortNonOptimized.bubbleSortNonOptimized(winesNonOpt);
         timer1.end();
 
-        IO.println("=== BUBBLE SORT NON-OPTIMIZED: FULL DATASET ===");
-        IO.println("Time: " + timer1.getTime());
-        IO.println("Comparisons: " + BubbleSortNonOptimized.comparisons);
-        IO.println("");
+        IO.println("BubbleSort-NonOptimized-Full     Time: " + timer1.getTime()
+                + "     Comparisons: " + BubbleSortNonOptimized.comparisons);
 
         ArrayList<Double> alcoholNonOpt = new ArrayList<>(originalUniqueAlcohol);
         Collections.shuffle(alcoholNonOpt);
@@ -31,10 +29,8 @@ public class SortTest {
         BubbleSortNonOptimized.bubbleSortNonOptimizedUnique(alcoholNonOpt);
         timer2.end();
 
-        IO.println("=== BUBBLE SORT NON-OPTIMIZED: UNIQUE ALCOHOL VALUES ===");
-        IO.println("Time: " + timer2.getTime());
-        IO.println("Comparisons: " + BubbleSortNonOptimized.comparisons);
-        IO.println("");
+        IO.println("BubbleSort-NonOptimized-Unique     Time: " + timer2.getTime()
+                + "     Comparisons: " + BubbleSortNonOptimized.comparisons);
 
         ArrayList<Wine> winesOpt = new ArrayList<>(originalWines);
 
@@ -44,10 +40,8 @@ public class SortTest {
         BubbleSortOptimized.bubbleSortOptimized(winesOpt);
         timer3.end();
 
-        IO.println("=== BUBBLE SORT OPTIMIZED: FULL DATASET ===");
-        IO.println("Time: " + timer3.getTime());
-        IO.println("Comparisons: " + BubbleSortOptimized.comparisons);
-        IO.println("");
+        IO.println("BubbleSort-Optimized-Full     Time: " + timer3.getTime()
+                + "     Comparisons: " + BubbleSortOptimized.comparisons);
 
         ArrayList<Double> alcoholBest = new ArrayList<>(originalUniqueAlcohol);
         Collections.sort(alcoholBest);
@@ -58,10 +52,8 @@ public class SortTest {
         BubbleSortOptimized.bubbleSortOptimizedUnique(alcoholBest);
         timer4.end();
 
-        IO.println("=== BUBBLE SORT OPTIMIZED: UNIQUE VALUES BEST CASE ===");
-        IO.println("Time: " + timer4.getTime());
-        IO.println("Comparisons: " + BubbleSortOptimized.comparisons);
-        IO.println("");
+        IO.println("BubbleSort-Optimized-Unique-BestCase     Time: " + timer4.getTime()
+                + "     Comparisons: " + BubbleSortOptimized.comparisons);
 
         ArrayList<Double> alcoholWorst = new ArrayList<>(originalUniqueAlcohol);
         Collections.shuffle(alcoholWorst);
@@ -72,9 +64,9 @@ public class SortTest {
         BubbleSortOptimized.bubbleSortOptimizedUnique(alcoholWorst);
         timer5.end();
 
-        IO.println("=== BUBBLE SORT OPTIMIZED: UNIQUE VALUES SHUFFLED ===");
-        IO.println("Time: " + timer5.getTime());
-        IO.println("Comparisons: " + BubbleSortOptimized.comparisons);
+        IO.println("BubbleSort-Optimized-Unique-Shuffled     Time: " + timer5.getTime()
+                + "     Comparisons: " + BubbleSortOptimized.comparisons);
+
         IO.println("");
     }
 
@@ -90,10 +82,8 @@ public class SortTest {
         InsertionSort.insertionSort(winesForInsertion);
         timer1.end();
 
-        IO.println("=== INSERTION SORT: FULL DATASET ===");
-        IO.println("Time: " + timer1.getTime());
-        IO.println("Comparisons: " + InsertionSort.comparisons);
-        IO.println("");
+        IO.println("InsertionSort-Full     Time: " + timer1.getTime()
+                + "     Comparisons: " + InsertionSort.comparisons);
 
         ArrayList<Double> alcoholBest = new ArrayList<>(originalUniqueAlcohol);
         Collections.sort(alcoholBest);
@@ -104,10 +94,8 @@ public class SortTest {
         InsertionSort.insertionSortUniqueAlcohol(alcoholBest);
         timer2.end();
 
-        IO.println("=== INSERTION SORT: UNIQUE VALUES BEST CASE ===");
-        IO.println("Time: " + timer2.getTime());
-        IO.println("Comparisons: " + InsertionSort.comparisons);
-        IO.println("");
+        IO.println("InsertionSort-Unique-BestCase     Time: " + timer2.getTime()
+                + "     Comparisons: " + InsertionSort.comparisons);
 
         ArrayList<Double> alcoholWorst = new ArrayList<>(originalUniqueAlcohol);
         Collections.shuffle(alcoholWorst);
@@ -118,9 +106,9 @@ public class SortTest {
         InsertionSort.insertionSortUniqueAlcohol(alcoholWorst);
         timer3.end();
 
-        IO.println("=== INSERTION SORT: UNIQUE VALUES SHUFFLED ===");
-        IO.println("Time: " + timer3.getTime());
-        IO.println("Comparisons: " + InsertionSort.comparisons);
+        IO.println("InsertionSort-Unique-Shuffled     Time: " + timer3.getTime()
+                + "     Comparisons: " + InsertionSort.comparisons);
+
         IO.println("");
     }
 
@@ -137,10 +125,8 @@ public class SortTest {
         MergeSort.mergeSort(winesForMergeSort);
         timer1.end();
 
-        IO.println("=== MERGE SORT: FULL DATASET ===");
-        IO.println("Time: " + timer1.getTime());
-        IO.println("Merge operations: " + MergeSort.mergeCount);
-        IO.println("");
+        IO.println("MergeSort-Full     Time: " + timer1.getTime()
+                + "     Merge operations: " + MergeSort.mergeCount);
 
         MergeSort.uniqueMergeCount = 0;
         Timer timer2 = new Timer();
@@ -148,9 +134,9 @@ public class SortTest {
         MergeSort.mergeSortUnique(uniqueAlcoholForMergeSort);
         timer2.end();
 
-        IO.println("=== MERGE SORT: UNIQUE ALCOHOL VALUES ===");
-        IO.println("Time: " + timer2.getTime());
-        IO.println("Merge operations: " + MergeSort.uniqueMergeCount);
+        IO.println("MergeSort-Unique     Time: " + timer2.getTime()
+                + "     Merge operations: " + MergeSort.uniqueMergeCount);
+
         IO.println("");
     }
 
@@ -167,10 +153,8 @@ public class SortTest {
         QuickSortFirstPivot.sort(wines);
         timer1.end();
 
-        IO.println("=== QUICK SORT FIRST PIVOT: FULL DATASET ===");
-        IO.println("Time: " + timer1.getTime());
-        IO.println("Comparisons: " + QuickSortFirstPivot.comparisons);
-        IO.println("");
+        IO.println("QuickSort-FirstPivot-Full     Time: " + timer1.getTime()
+                + "     Comparisons: " + QuickSortFirstPivot.comparisons);
 
         QuickSortFirstPivot.comparisons = 0;
         Timer timer2 = new Timer();
@@ -178,9 +162,9 @@ public class SortTest {
         QuickSortFirstPivot.sortUnique(alcohol);
         timer2.end();
 
-        IO.println("=== QUICK SORT FIRST PIVOT: UNIQUE ALCOHOL VALUES ===");
-        IO.println("Time: " + timer2.getTime());
-        IO.println("Comparisons: " + QuickSortFirstPivot.comparisons);
+        IO.println("QuickSort-FirstPivot-Unique     Time: " + timer2.getTime()
+                + "     Comparisons: " + QuickSortFirstPivot.comparisons);
+
         IO.println("");
     }
 
@@ -197,10 +181,8 @@ public class SortTest {
         QuickSortLastPivot.sort(wines);
         timer1.end();
 
-        IO.println("=== QUICK SORT LAST PIVOT: FULL DATASET ===");
-        IO.println("Time: " + timer1.getTime());
-        IO.println("Comparisons: " + QuickSortLastPivot.comparisons);
-        IO.println("");
+        IO.println("QuickSort-LastPivot-Full     Time: " + timer1.getTime()
+                + "     Comparisons: " + QuickSortLastPivot.comparisons);
 
         QuickSortLastPivot.comparisons = 0;
         Timer timer2 = new Timer();
@@ -208,9 +190,9 @@ public class SortTest {
         QuickSortLastPivot.sortUnique(alcohol);
         timer2.end();
 
-        IO.println("=== QUICK SORT LAST PIVOT: UNIQUE ALCOHOL VALUES ===");
-        IO.println("Time: " + timer2.getTime());
-        IO.println("Comparisons: " + QuickSortLastPivot.comparisons);
+        IO.println("QuickSort-LastPivot-Unique     Time: " + timer2.getTime()
+                + "     Comparisons: " + QuickSortLastPivot.comparisons);
+
         IO.println("");
     }
 
@@ -227,10 +209,8 @@ public class SortTest {
         QuickSortMedianPivot.sort(wines);
         timer1.end();
 
-        IO.println("=== QUICK SORT MEDIAN PIVOT: FULL DATASET ===");
-        IO.println("Time: " + timer1.getTime());
-        IO.println("Comparisons: " + QuickSortMedianPivot.comparisons);
-        IO.println("");
+        IO.println("QuickSort-MedianPivot-Full     Time: " + timer1.getTime()
+                + "     Comparisons: " + QuickSortMedianPivot.comparisons);
 
         QuickSortMedianPivot.comparisons = 0;
         Timer timer2 = new Timer();
@@ -238,9 +218,9 @@ public class SortTest {
         QuickSortMedianPivot.sortUnique(alcohol);
         timer2.end();
 
-        IO.println("=== QUICK SORT MEDIAN PIVOT: UNIQUE ALCOHOL VALUES ===");
-        IO.println("Time: " + timer2.getTime());
-        IO.println("Comparisons: " + QuickSortMedianPivot.comparisons);
+        IO.println("QuickSort-MedianPivot-Unique     Time: " + timer2.getTime()
+                + "     Comparisons: " + QuickSortMedianPivot.comparisons);
+
         IO.println("");
     }
 
@@ -257,10 +237,8 @@ public class SortTest {
         QuickSortRandomPivot.sort(wines);
         timer1.end();
 
-        IO.println("=== QUICK SORT RANDOM PIVOT: FULL DATASET ===");
-        IO.println("Time: " + timer1.getTime());
-        IO.println("Comparisons: " + QuickSortRandomPivot.comparisons);
-        IO.println("");
+        IO.println("QuickSort-RandomPivot-Full     Time: " + timer1.getTime()
+                + "     Comparisons: " + QuickSortRandomPivot.comparisons);
 
         QuickSortRandomPivot.comparisons = 0;
         Timer timer2 = new Timer();
@@ -268,16 +246,14 @@ public class SortTest {
         QuickSortRandomPivot.sortUnique(alcohol);
         timer2.end();
 
-        IO.println("=== QUICK SORT RANDOM PIVOT: UNIQUE ALCOHOL VALUES ===");
-        IO.println("Time: " + timer2.getTime());
-        IO.println("Comparisons: " + QuickSortRandomPivot.comparisons);
+        IO.println("QuickSort-RandomPivot-Unique     Time: " + timer2.getTime()
+                + "     Comparisons: " + QuickSortRandomPivot.comparisons);
+
         IO.println("");
     }
 
     public static void runAllQuickSorts() {
-        IO.println("=== RUNNING ALL QUICK SORT VARIANTS ===");
-        IO.println("");
-
+        IO.println("---AllQuickSorts---");
         runQuickSortFirstPivot();
         runQuickSortLastPivot();
         runQuickSortMedianPivot();
@@ -285,9 +261,7 @@ public class SortTest {
     }
 
     public static void runAllSortnigAlgorithms() {
-        IO.println("=== RUNNING ALL AVAILABLE SORTS ===");
-        IO.println("");
-
+        IO.println("---AllSortingAlgorithms---");
         runBubbleSort();
         runInsertionSort();
         runMergeSort();
