@@ -16,7 +16,9 @@ public class SortTest {
         System.out.printf("%-45s | Time: %-15s | %s%n", algorithm, time, metric);
     }
 
-    // ===== FULL DATASET TESTS =====
+/* ==============================================================================
+* FULL DATASET
+============================================================================== */
     
     public static void runBubbleSortFull() {
         Timer timer;
@@ -134,7 +136,7 @@ public class SortTest {
 
     public static void runMergeSortFull() {
         Timer timer;
-
+        
         ArrayList<Wine> winesForMergeSort = new ArrayList<>(ORIGINAL_WINES);
         Collections.shuffle(winesForMergeSort);
         MergeSort.mergeCount = 0;
@@ -158,7 +160,9 @@ public class SortTest {
         IO.println("");
     }
 
-    // ===== UNIQUE DATASET TESTS =====
+/* ==============================================================================
+* UNIQUE DATASET
+============================================================================== */
 
     public static void runBubbleSortUnique() {
         Timer timer;
@@ -272,7 +276,7 @@ public class SortTest {
 
     public static void runMergeSortUnique() {
         Timer timer;
-
+        
         HashSet<Double> uniqueAlcoholForMergeSort = new HashSet<>(ORIGINAL_UNIQUE_ALCOHOL);
         MergeSort.uniqueMergeCount = 0;
         timer = new Timer();
@@ -295,7 +299,9 @@ public class SortTest {
         IO.println("");
     }
 
-    // ===== MAIN TEST EXECUTION =====
+/* ==============================================================================
+* MAIN EXECUTION
+============================================================================== */
 
     public static void runAllSortingAlgorithms() {
         runAllFullDatasetTests();
