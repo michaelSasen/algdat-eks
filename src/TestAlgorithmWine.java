@@ -5,8 +5,7 @@ import java.util.function.Consumer;
 
 public class TestAlgorithmWine {
 
-    public static TestResult testWineAlgorithm(ArrayList<Wine> dataset, boolean shuffle, int repetitions,
-                                               String name, Consumer<ArrayList<Wine>> algorithm) {
+    public static TestResult testWineAlgorithm(ArrayList<Wine> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Wine>> algorithm) {
         long totalTime = 0;
         long totalComparisons = 0;
 
@@ -46,8 +45,7 @@ public class TestAlgorithmWine {
         return new TestResult(name, repetitions, shuffle, totalTime, totalComparisons, "Comparisons");
     }
 
-    public static TestResult testUniqueAlgorithm(ArrayList<Double> dataset, boolean shuffle, int repetitions,
-                                                 String name, Consumer<ArrayList<Double>> algorithm) {
+    public static TestResult testUniqueAlgorithm(ArrayList<Double> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Double>> algorithm) {
         long totalTime = 0;
         long totalComparisons = 0;
 
@@ -133,16 +131,14 @@ public class TestAlgorithmWine {
         return new TestResult("Merge Sort Unique", repetitions, true, totalTime, totalMerges, "Merge Operations");
     }
 
-    public static void runWarmUp(ArrayList<Wine> dataset, int warmUpLength, String name,
-                                 Consumer<ArrayList<Wine>> algorithm) {
+    public static void runWarmUp(ArrayList<Wine> dataset, int warmUpLength, String name, Consumer<ArrayList<Wine>> algorithm) {
         for (int i = 0; i < warmUpLength; i++) {
             ArrayList<Wine> copiedData = new ArrayList<>(dataset);
             algorithm.accept(copiedData);
         }
     }
 
-    public static void runWarmUpDouble(ArrayList<Double> dataset, int warmUpLength, String name,
-                                       Consumer<ArrayList<Double>> algorithm) {
+    public static void runWarmUpDouble(ArrayList<Double> dataset, int warmUpLength, String name, Consumer<ArrayList<Double>> algorithm) {
         for (int i = 0; i < warmUpLength; i++) {
             ArrayList<Double> copiedData = new ArrayList<>(dataset);
             algorithm.accept(copiedData);

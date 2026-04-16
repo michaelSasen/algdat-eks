@@ -138,13 +138,13 @@ public class SortTest {
         IO.println("Warm-up complete.\n");
 
         IO.println("Warming up Unique Dataset algorithms...");
-        TestAlgorithmWine.runWarmUpDouble(new ArrayList<Double>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Bubble Sort Non-Optimized Unique", BubbleSortNonOptimized::bubbleSortNonOptimizedUnique);
-        TestAlgorithmWine.runWarmUpDouble(new ArrayList<Double>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Bubble Sort Optimized Unique", BubbleSortOptimized::bubbleSortOptimizedUnique);
-        TestAlgorithmWine.runWarmUpDouble(new ArrayList<Double>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Insertion Sort Unique", InsertionSort::insertionSortUniqueAlcohol);
-        TestAlgorithmWine.runWarmUpDouble(new ArrayList<Double>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort First Pivot Unique", QuickSortFirstPivot::sortUnique);
-        TestAlgorithmWine.runWarmUpDouble(new ArrayList<Double>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort Last Pivot Unique", QuickSortLastPivot::sortUnique);
-        TestAlgorithmWine.runWarmUpDouble(new ArrayList<Double>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort Median Pivot Unique", QuickSortMedianPivot::sortUnique);
-        TestAlgorithmWine.runWarmUpDouble(new ArrayList<Double>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort Random Pivot Unique", QuickSortRandomPivot::sortUnique);
+        TestAlgorithmWine.runWarmUpDouble(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Bubble Sort Non-Optimized Unique", BubbleSortNonOptimized::bubbleSortNonOptimizedUnique);
+        TestAlgorithmWine.runWarmUpDouble(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Bubble Sort Optimized Unique", BubbleSortOptimized::bubbleSortOptimizedUnique);
+        TestAlgorithmWine.runWarmUpDouble(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Insertion Sort Unique", InsertionSort::insertionSortUniqueAlcohol);
+        TestAlgorithmWine.runWarmUpDouble(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort First Pivot Unique", QuickSortFirstPivot::sortUnique);
+        TestAlgorithmWine.runWarmUpDouble(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort Last Pivot Unique", QuickSortLastPivot::sortUnique);
+        TestAlgorithmWine.runWarmUpDouble(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort Median Pivot Unique", QuickSortMedianPivot::sortUnique);
+        TestAlgorithmWine.runWarmUpDouble(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Quick Sort Random Pivot Unique", QuickSortRandomPivot::sortUnique);
         TestAlgorithmWine.runMergeUniqueWarmUp(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 10, "Merge Sort Unique");
         IO.println("Warm-up complete.\n");
 
