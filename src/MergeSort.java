@@ -13,40 +13,6 @@ public class MergeSort {
     public static int mergeCount = 0;
     public static int uniqueMergeCount = 0;
 
-/*
-void main() {
-
-    ArrayList<Wine> wines = CSVImport.fileReader();
-    HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
-
-    Timer timer = new Timer();
-
-    // reset counter to avoid adding merge counts from previous runs
-    mergeCount = 0;
-
-    timer.start();
-    mergeSort(wines);
-    timer.end();
-
-    IO.println("Full dataset: ");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Merge operations: " + mergeCount);
-
-    // reset counter to avoid adding merge counts from previous runs
-    uniqueMergeCount = 0;
-
-    timer.start();
-    mergeSortUnique(uniqueAlcohol);
-    timer.end();
-
-    IO.println("");
-
-    IO.println("Unique alcohol values: ");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Merge operations: " + uniqueMergeCount);
-}
-*/
-
 /* ==============================================================================
 * MERGE SORT ALGORITHM
 ============================================================================== */

@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 public class BenchmarkAlgorithms {
 
-    public static TestResult testWineAlgorithm(ArrayList<Wine> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Wine>> algorithm) {
+    public static TestResult testAlgorithm(ArrayList<Wine> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Wine>> algorithm) {
         long totalTime = 0;
         long totalComparisons = 0;
 
@@ -45,7 +45,7 @@ public class BenchmarkAlgorithms {
         return new TestResult(name, repetitions, shuffle, totalTime, totalComparisons, "Comparisons");
     }
 
-    public static TestResult testUniqueAlgorithm(ArrayList<Double> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Double>> algorithm) {
+    public static TestResult testAlgorithmUnique(ArrayList<Double> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Double>> algorithm) {
         long totalTime = 0;
         long totalComparisons = 0;
 
