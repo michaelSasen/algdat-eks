@@ -25,41 +25,6 @@ import java.util.Collections;
         }
     }
 
- /*
-
-    static int comparisons = 0;
-
-    void main() {
-        // full dataset
-        ArrayList<Wine> wines = CSVImport.fileReader();
-        // hashset with only unique alcohol values
-        HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
-        // converting hashset to arraylist
-        ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
-
-        Timer timer = new Timer();
-        timer.start();
-        quickSort(wines, 0, wines.size() - 1);
-        timer.end();
-
-        IO.println("Full dataset: ");
-        IO.println("Time: " + timer.getTime());
-        IO.println("Comparisons: " + comparisons);
-
-        IO.println("");
-        // Reset comparisons
-        comparisons = 0;
-
-        timer.start();
-        quickSortUnique(alcohol, 0, alcohol.size() - 1);
-        timer.end();
-
-        IO.println("Unique alcohol values: ");
-        IO.println("Time: " + timer.getTime());
-        IO.println("Comparisons: " + comparisons);
-    }
-
-  */
 /* ==============================================================================
 * QUICK SORT ALGORITHM PIVOT MEDIAN OF THREE
 ============================================================================== */

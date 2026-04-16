@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /* ==============================================================================
 * TASK 2: INSERTION SORT ALGORITHM
 * code inspiration source: LO 3_SortingAlgorithms.pptx by Prof. Dr. Rashmi Gupta
@@ -5,47 +7,8 @@
 * Time Complexity: O(n) best case | O(n²) worst case - depends on input order
 ============================================================================== */
 
-import java.util.ArrayList;
-
 public class InsertionSort {
     static int comparisons = 0;
-
-
-/*
-void main() {
-    // Load all wine records from CSV
-    ArrayList<Wine> wines = CSVImport.fileReader();
-    // Extract unique alcohol values from dataset
-    HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
-    // Casting the hashset to an arraylist
-    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
-
-    Timer timer = new Timer();
-
-    // Best case: Already sorted
-    Collections.sort(alcohol);
-    comparisons = 0;
-    timer.start();
-    insertionSortUniqueAlcohol(alcohol);
-    timer.end();
-
-    IO.println("Best case (sorted data): O(n)");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + comparisons);
-
-    IO.println("");
-    comparisons = 0;
-
-    // Worst case: Shuffled data
-    Collections.shuffle(alcohol);
-    timer.start();
-    insertionSortUniqueAlcohol(alcohol);
-    timer.end();
-
-    IO.println("Worst case (shuffled data): O(n²)");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + comparisons);
-}
 
 /* ==============================================================================
 * INSERTION SORT ALGORITHM

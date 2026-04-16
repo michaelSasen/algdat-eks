@@ -25,46 +25,6 @@ public class QuickSortLastPivot {
         }
     }
 
-/*
-
-static int comparisons = 0;
-
-void main() {
-    // Load all wine records from CSV
-    ArrayList<Wine> wines = CSVImport.fileReader();
-    // Extract unique alcohol values from dataset
-    HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
-    // Casting the hashset to an arraylist
-    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
-
-    // Best case: reverse sorted data (last element = minimum, worst case for last pivot)
-    alcohol.sort(Collections.reverseOrder());
-    
-    Timer timer = new Timer();
-    timer.start();
-    quickSortUnique(alcohol, 0, alcohol.size() - 1);
-    timer.end();
-
-    IO.println("Worst case (reverse sorted data - last pivot is minimum): O(n²)");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + comparisons);
-
-    IO.println("");
-    comparisons = 0;
-
-    // Average case: shuffled data (last element is random)
-    Collections.shuffle(alcohol);
-    timer.start();
-    quickSortUnique(alcohol, 0, alcohol.size() - 1);
-    timer.end();
-
-    IO.println("Average case (shuffled data - last pivot is random): O(n log n)");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + comparisons);
-}
-
- */
-
 /* ==============================================================================
 * QUICK SORT ALGORITHM PIVOT LAST
 ============================================================================== */

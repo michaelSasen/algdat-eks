@@ -1,10 +1,8 @@
-
 /* ==============================================================================
 * TIMER FUNCTION
 * Creation of a simple timer class, this uses System.nanoTime().
 * Has a start time and end time. Returns the time spent in nanoseconds
 ============================================================================== */
-
 
 public class Timer {
 

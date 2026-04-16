@@ -10,43 +10,6 @@ import java.util.Collections;
 public class BubbleSortOptimized {
     static int comparisons = 0;
 
-/*
-void main() {
-    // Load all wine records from CSV
-    ArrayList<Wine> wines = CSVImport.fileReader();
-    // Extract unique alcohol values from dataset
-    HashSet<Double> uniqueAlcohol = CSVImport.uniqueAlcoholValues(wines);
-    // Casting the hashset to an arraylist
-    ArrayList<Double> alcohol = new ArrayList<>(uniqueAlcohol);
-
-    Timer timer = new Timer();
-
-    comparisons = 0;
-
-    // Best case: Already sorted
-    Collections.sort(alcohol);
-    timer.start();
-    bubbleSortOptimizedUnique(alcohol);
-    timer.end();
-
-    IO.println("Best case (sorted data): O(n)");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + comparisons);
-
-    comparisons = 0;
-    IO.println("");
-
-    // Worst case: Shuffled data
-    Collections.shuffle(alcohol);
-    timer.start();
-    bubbleSortOptimizedUnique(alcohol);
-    timer.end();
-
-    IO.println("Worst case (shuffled data): O(n²)");
-    IO.println("Time: " + timer.getTime());
-    IO.println("Comparisons: " + comparisons);
-}
-
 /* ==============================================================================
 * BUBBLE SORT ALGORITHM OPTIMIZED
 ============================================================================== */
