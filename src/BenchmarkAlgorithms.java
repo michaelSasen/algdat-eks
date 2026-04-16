@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 
-public class SortTest {
+public class BenchmarkAlgorithms {
 
     private static ArrayList<Wine> ORIGINAL_WINES;
     private static HashSet<Double> ORIGINAL_UNIQUE_ALCOHOL;
