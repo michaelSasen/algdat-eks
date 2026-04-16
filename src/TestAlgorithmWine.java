@@ -1,186 +1,168 @@
-void main() {
-    ArrayList<Wine> dataset = CSVImport.fileReader();
-    ArrayList<Double> uniqueAlcohol = new ArrayList<>(CSVImport.uniqueAlcoholValues(dataset));
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.function.Consumer;
 
-    // =========================
-    // WARM-UP
-    // =========================
-    runWarmUp(dataset, 10, "Bubble Sort Non-Optimized", BubbleSortNonOptimized::bubbleSortNonOptimized);
-    runWarmUp(dataset, 10, "Bubble Sort Optimized", BubbleSortOptimized::bubbleSortOptimized);
+public class TestAlgorithmWine {
 
-    runWarmUp(dataset, 10, "Insertion Sort", InsertionSort::insertionSort);
+    public static TestResult testWineAlgorithm(ArrayList<Wine> dataset, boolean shuffle, int repetitions,
+                                               String name, Consumer<ArrayList<Wine>> algorithm) {
+        long totalTime = 0;
+        long totalComparisons = 0;
 
-    runMergeWarmUp(dataset, 10, "Merge Sort");
+        for (int i = 0; i < repetitions; i++) {
+            ArrayList<Wine> copiedData = new ArrayList<>(dataset);
 
-    runWarmUp(dataset, 10, "Quick Sort First Pivot", QuickSortFirstPivot::sort);
-    runWarmUp(dataset, 10, "Quick Sort Last Pivot", QuickSortLastPivot::sort);
-    runWarmUp(dataset, 10, "Quick Sort Median Pivot", QuickSortMedianPivot::sort);
-    runWarmUp(dataset, 10, "Quick Sort Random Pivot", QuickSortRandomPivot::sort);
+            if (shuffle) {
+                Collections.shuffle(copiedData);
+            }
 
-    // =========================
-    // FULL DATASET TESTS
-    // =========================
-    testWineAlgorithm(dataset, true, 100, "Bubble Sort Non-Optimized", BubbleSortNonOptimized::bubbleSortNonOptimized);
-    testWineAlgorithm(dataset, true, 100, "Bubble Sort Optimized", BubbleSortOptimized::bubbleSortOptimized);
+            // Reset comparisons for this algorithm
+            if (name.contains("BubbleSort-NonOptimized")) BubbleSortNonOptimized.comparisons = 0;
+            else if (name.contains("BubbleSort-Optimized")) BubbleSortOptimized.comparisons = 0;
+            else if (name.contains("InsertionSort")) InsertionSort.comparisons = 0;
+            else if (name.contains("QuickSort-FirstPivot")) QuickSortFirstPivot.comparisons = 0;
+            else if (name.contains("QuickSort-LastPivot")) QuickSortLastPivot.comparisons = 0;
+            else if (name.contains("QuickSort-MedianPivot")) QuickSortMedianPivot.comparisons = 0;
+            else if (name.contains("QuickSort-RandomPivot")) QuickSortRandomPivot.comparisons = 0;
 
-    testWineAlgorithm(dataset, true, 100, "Insertion Sort", InsertionSort::insertionSort);
+            Timer timer = new Timer();
+            timer.start();
+            algorithm.accept(copiedData);
+            timer.end();
 
-    testMergeSort(dataset, 100);
-
-    testWineAlgorithm(dataset, true, 100, "Quick Sort First Pivot", QuickSortFirstPivot::sort);
-    testWineAlgorithm(dataset, true, 100, "Quick Sort Last Pivot", QuickSortLastPivot::sort);
-    testWineAlgorithm(dataset, true, 100, "Quick Sort Median Pivot", QuickSortMedianPivot::sort);
-    testWineAlgorithm(dataset, true, 100, "Quick Sort Random Pivot", QuickSortRandomPivot::sort);
-
-    // =========================
-    // UNIQUE ALCOHOL VALUE TESTS
-    // =========================
-    testUniqueAlgorithm(uniqueAlcohol, true, 100, "Bubble Sort Non-Optimized Unique", BubbleSortNonOptimized::bubbleSortNonOptimizedUnique);
-    testUniqueAlgorithm(uniqueAlcohol, true, 100, "Bubble Sort Optimized Unique", BubbleSortOptimized::bubbleSortOptimizedUnique);
-
-    testUniqueAlgorithm(uniqueAlcohol, true, 100, "Insertion Sort Unique", InsertionSort::insertionSortUniqueAlcohol);
-
-    testMergeSortUnique(uniqueAlcohol, 100);
-
-    testUniqueAlgorithm(uniqueAlcohol, true, 100, "Quick Sort First Pivot Unique", QuickSortFirstPivot::sortUnique);
-    testUniqueAlgorithm(uniqueAlcohol, true, 100, "Quick Sort Last Pivot Unique", QuickSortLastPivot::sortUnique);
-    testUniqueAlgorithm(uniqueAlcohol, true, 100, "Quick Sort Median Pivot Unique", QuickSortMedianPivot::sortUnique);
-    testUniqueAlgorithm(uniqueAlcohol, true, 100, "Quick Sort Random Pivot Unique", QuickSortRandomPivot::sortUnique);
-}
-
-public static void runWarmUp(ArrayList<Wine> dataset, int warmUpLength, String name,
-                             Consumer<ArrayList<Wine>> algorithm) {
-    IO.println("*** Starting warm-up of JVM with " + name + " ***");
-
-    for (int i = 0; i < warmUpLength; i++) {
-        ArrayList<Wine> copiedData = new ArrayList<>(dataset);
-        algorithm.accept(copiedData);
-    }
-
-    IO.println("*** Finished warm-up of JVM with " + name + " ***");
-}
-
-public static void runMergeWarmUp(ArrayList<Wine> dataset, int warmUpLength, String name) {
-    IO.println("*** Starting warm-up of JVM with " + name + " ***");
-
-    for (int i = 0; i < warmUpLength; i++) {
-        ArrayList<Wine> copiedData = new ArrayList<>(dataset);
-        MergeSort.mergeCount = 0;
-        MergeSort.mergeSort(copiedData);
-    }
-
-    IO.println("*** Finished warm-up of JVM with " + name + " ***");
-}
-
-public static void testWineAlgorithm(ArrayList<Wine> dataset, boolean shuffle, int repetitions,
-                                     String name, Consumer<ArrayList<Wine>> algorithm) {
-    IO.println("\n*** Starting test of " + name + " ***");
-
-    long totalTime = 0;
-
-    for (int i = 0; i < repetitions; i++) {
-        ArrayList<Wine> copiedData = new ArrayList<>(dataset);
-
-        if (shuffle) {
-            Collections.shuffle(copiedData);
+            totalTime += timer.getTime();
+            
+            // Capture comparisons from the algorithm
+            if (name.contains("BubbleSort-NonOptimized")) totalComparisons += BubbleSortNonOptimized.comparisons;
+            else if (name.contains("BubbleSort-Optimized")) totalComparisons += BubbleSortOptimized.comparisons;
+            else if (name.contains("InsertionSort")) totalComparisons += InsertionSort.comparisons;
+            else if (name.contains("QuickSort-FirstPivot")) totalComparisons += QuickSortFirstPivot.comparisons;
+            else if (name.contains("QuickSort-LastPivot")) totalComparisons += QuickSortLastPivot.comparisons;
+            else if (name.contains("QuickSort-MedianPivot")) totalComparisons += QuickSortMedianPivot.comparisons;
+            else if (name.contains("QuickSort-RandomPivot")) totalComparisons += QuickSortRandomPivot.comparisons;
         }
 
-        Timer timer = new Timer();
-        timer.start();
-        algorithm.accept(copiedData);
-        timer.end();
-
-        totalTime += timer.getTime();
+        return new TestResult(name, repetitions, shuffle, totalTime, totalComparisons, "Comparisons");
     }
 
-    printResults(name, repetitions, shuffle, totalTime);
-}
+    public static TestResult testUniqueAlgorithm(ArrayList<Double> dataset, boolean shuffle, int repetitions,
+                                                 String name, Consumer<ArrayList<Double>> algorithm) {
+        long totalTime = 0;
+        long totalComparisons = 0;
 
-public static void testUniqueAlgorithm(ArrayList<Double> dataset, boolean shuffle, int repetitions,
-                                       String name, Consumer<ArrayList<Double>> algorithm) {
-    IO.println("\n*** Starting test of " + name + " ***");
+        for (int i = 0; i < repetitions; i++) {
+            ArrayList<Double> copiedData = new ArrayList<>(dataset);
 
-    long totalTime = 0;
+            if (shuffle) {
+                Collections.shuffle(copiedData);
+            }
 
-    for (int i = 0; i < repetitions; i++) {
-        ArrayList<Double> copiedData = new ArrayList<>(dataset);
+            // Reset comparisons for this algorithm
+            if (name.contains("BubbleSort-NonOptimized")) BubbleSortNonOptimized.comparisons = 0;
+            else if (name.contains("BubbleSort-Optimized")) BubbleSortOptimized.comparisons = 0;
+            else if (name.contains("InsertionSort")) InsertionSort.comparisons = 0;
+            else if (name.contains("QuickSort-FirstPivot")) QuickSortFirstPivot.comparisons = 0;
+            else if (name.contains("QuickSort-LastPivot")) QuickSortLastPivot.comparisons = 0;
+            else if (name.contains("QuickSort-MedianPivot")) QuickSortMedianPivot.comparisons = 0;
+            else if (name.contains("QuickSort-RandomPivot")) QuickSortRandomPivot.comparisons = 0;
 
-        if (shuffle) {
-            Collections.shuffle(copiedData);
+            Timer timer = new Timer();
+            timer.start();
+            algorithm.accept(copiedData);
+            timer.end();
+
+            totalTime += timer.getTime();
+            
+            // Capture comparisons from the algorithm
+            if (name.contains("BubbleSort-NonOptimized")) totalComparisons += BubbleSortNonOptimized.comparisons;
+            else if (name.contains("BubbleSort-Optimized")) totalComparisons += BubbleSortOptimized.comparisons;
+            else if (name.contains("InsertionSort")) totalComparisons += InsertionSort.comparisons;
+            else if (name.contains("QuickSort-FirstPivot")) totalComparisons += QuickSortFirstPivot.comparisons;
+            else if (name.contains("QuickSort-LastPivot")) totalComparisons += QuickSortLastPivot.comparisons;
+            else if (name.contains("QuickSort-MedianPivot")) totalComparisons += QuickSortMedianPivot.comparisons;
+            else if (name.contains("QuickSort-RandomPivot")) totalComparisons += QuickSortRandomPivot.comparisons;
         }
 
-        Timer timer = new Timer();
-        timer.start();
-        algorithm.accept(copiedData);
-        timer.end();
-
-        totalTime += timer.getTime();
+        return new TestResult(name, repetitions, shuffle, totalTime, totalComparisons, "Comparisons");
     }
 
-    printResults(name, repetitions, shuffle, totalTime);
-}
+    public static TestResult testMergeSort(ArrayList<Wine> dataset, int repetitions) {
+        long totalTime = 0;
+        long totalMerges = 0;
 
-public static void testMergeSort(ArrayList<Wine> dataset, int repetitions) {
-    IO.println("\n*** Starting test of Merge Sort ***");
+        for (int i = 0; i < repetitions; i++) {
+            ArrayList<Wine> copiedData = new ArrayList<>(dataset);
+            Collections.shuffle(copiedData);
 
-    long totalTime = 0;
+            MergeSort.mergeCount = 0;
 
-    for (int i = 0; i < repetitions; i++) {
-        ArrayList<Wine> copiedData = new ArrayList<>(dataset);
-        Collections.shuffle(copiedData);
+            Timer timer = new Timer();
+            timer.start();
+            MergeSort.mergeSort(copiedData);
+            timer.end();
 
-        MergeSort.mergeCount = 0;
+            totalTime += timer.getTime();
+            totalMerges += MergeSort.mergeCount;
+        }
 
-        Timer timer = new Timer();
-        timer.start();
-        MergeSort.mergeSort(copiedData);
-        timer.end();
-
-        totalTime += timer.getTime();
+        return new TestResult("Merge Sort", repetitions, true, totalTime, totalMerges, "Merge Operations");
     }
 
-    printResults("Merge Sort", repetitions, true, totalTime);
-}
+    public static TestResult testMergeSortUnique(ArrayList<Double> dataset, int repetitions) {
+        long totalTime = 0;
+        long totalMerges = 0;
 
-public static void testMergeSortUnique(ArrayList<Double> dataset, int repetitions) {
-    IO.println("\n*** Starting test of Merge Sort Unique ***");
+        for (int i = 0; i < repetitions; i++) {
+            ArrayList<Double> copiedData = new ArrayList<>(dataset);
+            Collections.shuffle(copiedData);
 
-    long totalTime = 0;
+            HashSet<Double> uniqueSet = new HashSet<>(copiedData);
 
-    for (int i = 0; i < repetitions; i++) {
-        ArrayList<Double> copiedData = new ArrayList<>(dataset);
-        Collections.shuffle(copiedData);
+            MergeSort.uniqueMergeCount = 0;
 
-        HashSet<Double> uniqueSet = new HashSet<>(copiedData);
+            Timer timer = new Timer();
+            timer.start();
+            MergeSort.mergeSortUnique(uniqueSet);
+            timer.end();
 
-        MergeSort.uniqueMergeCount = 0;
+            totalTime += timer.getTime();
+            totalMerges += MergeSort.uniqueMergeCount;
+        }
 
-        Timer timer = new Timer();
-        timer.start();
-        MergeSort.mergeSortUnique(uniqueSet);
-        timer.end();
-
-        totalTime += timer.getTime();
+        return new TestResult("Merge Sort Unique", repetitions, true, totalTime, totalMerges, "Merge Operations");
     }
 
-    printResults("Merge Sort Unique", repetitions, true, totalTime);
-}
-
-public static void printResults(String name, int repetitions, boolean shuffle, long totalTimeNano) {
-    double totalMs = totalTimeNano / 1_000_000.0;
-    double totalSec = totalTimeNano / 1_000_000_000.0;
-    long avgNano = totalTimeNano / repetitions;
-    double avgMs = avgNano / 1_000_000.0;
-    double avgSec = avgNano / 1_000_000_000.0;
-
-    if (shuffle) {
-        System.out.printf("Total runtime for %d tests of %s when data is shuffled: %.4f seconds (%d ns)%n",
-                repetitions, name, totalSec, totalTimeNano);
-    } else {
-        System.out.printf("Total runtime for %d tests of %s when data is not shuffled: %.4f seconds (%d ns)%n",
-                repetitions, name, totalSec, totalTimeNano);
+    public static void runWarmUp(ArrayList<Wine> dataset, int warmUpLength, String name,
+                                 Consumer<ArrayList<Wine>> algorithm) {
+        for (int i = 0; i < warmUpLength; i++) {
+            ArrayList<Wine> copiedData = new ArrayList<>(dataset);
+            algorithm.accept(copiedData);
+        }
     }
 
-    System.out.printf("Average runtime: %d ns (%.4f ms / %.6f s)%n", avgNano, avgMs, avgSec);
-    System.out.printf("Total runtime in ms: %.4f ms%n", totalMs);
+    public static void runWarmUpDouble(ArrayList<Double> dataset, int warmUpLength, String name,
+                                       Consumer<ArrayList<Double>> algorithm) {
+        for (int i = 0; i < warmUpLength; i++) {
+            ArrayList<Double> copiedData = new ArrayList<>(dataset);
+            algorithm.accept(copiedData);
+        }
+    }
+
+    public static void runMergeWarmUp(ArrayList<Wine> dataset, int warmUpLength, String name) {
+        for (int i = 0; i < warmUpLength; i++) {
+            ArrayList<Wine> copiedData = new ArrayList<>(dataset);
+            MergeSort.mergeCount = 0;
+            MergeSort.mergeSort(copiedData);
+        }
+    }
+
+    public static void runMergeUniqueWarmUp(ArrayList<Double> dataset, int warmUpLength, String name) {
+        for (int i = 0; i < warmUpLength; i++) {
+            ArrayList<Double> copiedData = new ArrayList<>(dataset);
+            HashSet<Double> uniqueSet = new HashSet<>(copiedData);
+            MergeSort.uniqueMergeCount = 0;
+            MergeSort.mergeSortUnique(uniqueSet);
+        }
+    }
 }

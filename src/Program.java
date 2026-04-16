@@ -5,11 +5,11 @@ void main() {
 
     while (running) {
         IO.println("=== SORTING-PROGRAM ===");
-        IO.println("1. full dataset");
-        IO.println("2. unique dataset");
-        IO.println("3. run all");
-        IO.println("4. quit");
-        IO.print("choose one: ");
+        IO.println("1. Run Full Dataset Benchmark");
+        IO.println("2. Run Unique Dataset Benchmark");
+        IO.println("3. Run Both Datasets");
+        IO.println("4. Quit");
+        IO.println("Enter action: ");
 
         int choice = scanner.nextInt();
         IO.println("");
