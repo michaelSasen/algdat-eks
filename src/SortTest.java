@@ -4,8 +4,8 @@ import java.util.HashSet;
 
 public class SortTest {
 
-    private static ArrayList<Wine> ORIGINAL_WINES;
-    private static HashSet<Double> ORIGINAL_UNIQUE_ALCOHOL;
+    private static final ArrayList<Wine> ORIGINAL_WINES;
+    private static final HashSet<Double> ORIGINAL_UNIQUE_ALCOHOL;
 
     static {
         ORIGINAL_WINES = CSVImport.fileReader();
