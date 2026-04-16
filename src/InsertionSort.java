@@ -20,10 +20,14 @@ public class InsertionSort {
             Wine curr = wines.get(i);
             double currAlc = curr.alcohol();
 
-            while (j >= 0 && wines.get(j).alcohol() > currAlc) {
+            while (j >= 0) {
                 comparisons++;
-                wines.set(j + 1, wines.get(j));
-                j--;
+                if (wines.get(j).alcohol() > currAlc) {
+                    wines.set(j + 1, wines.get(j));
+                    j--;
+                } else {
+                    break;
+                }
             }
             wines.set(j + 1, curr);
         }
@@ -37,10 +41,14 @@ public class InsertionSort {
         for (int i = 1; i < alcohol.size(); i++) {  // n-1 passes
             int j = i - 1;
             Double curr = alcohol.get(i);
-            while (j >= 0 && alcohol.get(j) > curr) {
+            while (j >= 0) {
                 comparisons++;
-                alcohol.set(j + 1, alcohol.get(j));
-                j--;
+                if (alcohol.get(j) > curr) {
+                    alcohol.set(j + 1, alcohol.get(j));
+                    j--;
+                } else {
+                    break;
+                }
             }
             alcohol.set(j + 1, curr);
         }

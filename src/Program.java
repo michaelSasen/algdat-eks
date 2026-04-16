@@ -5,12 +5,10 @@ void main() {
 
     while (running) {
         IO.println("=== SORTING-PROGRAM ===");
-        IO.println("1. bubble");
-        IO.println("2. insertion");
-        IO.println("3. merge");
-        IO.println("4. quick");
-        IO.println("5. run all");
-        IO.println("6. quit");
+        IO.println("1. full dataset");
+        IO.println("2. unique dataset");
+        IO.println("3. run all");
+        IO.println("4. quit");
         IO.print("choose one: ");
 
         int choice = scanner.nextInt();
@@ -18,26 +16,18 @@ void main() {
 
         switch (choice) {
             case 1:
-                SortTest.runBubbleSort();
+                SortTest.runAllFullDatasetTests();
                 break;
 
             case 2:
-                SortTest.runInsertionSort();
+                SortTest.runAllUniqueDatasetTests();
                 break;
 
             case 3:
-                SortTest.runMergeSort();
+                SortTest.runAllSortingAlgorithms();
                 break;
 
             case 4:
-                SortTest.runAllQuickSorts();
-                break;
-
-            case 5:
-                SortTest.runAllSortnigAlgorithms();
-                break;
-
-            case 6:
                 running = false;
                 IO.println("Program exit.");
                 break;
