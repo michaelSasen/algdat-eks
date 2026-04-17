@@ -31,46 +31,46 @@ public class RunBenchmark {
 
     // Runs both versions of Bubble Sort on full dataset
     public static void runBubbleSortFull() {
-        TestResult r1 = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "BubbleSort-NonOptimized-Full", BubbleSortNonOptimized::bubbleSortNonOptimized);
+        TestResult r1 = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, false, 100, "BubbleSort-NonOptimized-Full", BubbleSortNonOptimized::bubbleSortNonOptimized);
         printResult(r1);
 
-        TestResult r2 = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "BubbleSort-Optimized-Full", BubbleSortOptimized::bubbleSortOptimized);
+        TestResult r2 = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, false, 100, "BubbleSort-Optimized-Full", BubbleSortOptimized::bubbleSortOptimized);
         printResult(r2);
     }
 
     // Runs Insertion Sort on full dataset
     public static void runInsertionSortFull() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "InsertionSort-Full", InsertionSort::insertionSort);
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, false, 100, "InsertionSort-Full", InsertionSort::insertionSort);
         printResult(r);
     }
 
     // Runs Quick Sort (first element as pivot)
     public static void runQuickSortFirstPivotFull() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-FirstPivot-Full", QuickSortFirstPivot::sort);
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, false, 100, "QuickSort-FirstPivot-Full", QuickSortFirstPivot::sort);
         printResult(r);
     }
 
     // Runs Quick Sort (last element as pivot)
     public static void runQuickSortLastPivotFull() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-LastPivot-Full", QuickSortLastPivot::sort);
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, false, 100, "QuickSort-LastPivot-Full", QuickSortLastPivot::sort);
         printResult(r);
     }
 
     // Runs Quick Sort (median pivot strategy)
     public static void runQuickSortMedianPivotFull() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-MedianPivot-Full", QuickSortMedianPivot::sort);
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, false, 100, "QuickSort-MedianPivot-Full", QuickSortMedianPivot::sort);
         printResult(r);
     }
 
     // Runs Quick Sort (random pivot strategy)
     public static void runQuickSortRandomPivotFull() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-RandomPivot-Full", QuickSortRandomPivot::sort);
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, false, 100, "QuickSort-RandomPivot-Full", QuickSortRandomPivot::sort);
         printResult(r);
     }
 
-    // Runs Merge Sort on full dataset
+    // Runs Merge Sort on full dataset (sorted)
     public static void runMergeSortFull() {
-        TestResult r = BenchmarkAlgorithms.testMergeSort(ORIGINAL_WINES, 100);
+        TestResult r = BenchmarkAlgorithms.testMergeSort(ORIGINAL_WINES, false, 100);
         printResult(r);
     }
 
@@ -93,46 +93,46 @@ public class RunBenchmark {
 
     // Runs Bubble Sort on unique alcohol values
     public static void runBubbleSortUnique() {
-        TestResult r1 = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "BubbleSort-NonOptimized-Unique", BubbleSortNonOptimized::bubbleSortNonOptimizedUnique);
+        TestResult r1 = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100, "BubbleSort-NonOptimized-Unique", BubbleSortNonOptimized::bubbleSortNonOptimizedUnique);
         printResult(r1);
 
-        TestResult r2 = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "BubbleSort-Optimized-Unique", BubbleSortOptimized::bubbleSortOptimizedUnique);
+        TestResult r2 = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100, "BubbleSort-Optimized-Unique", BubbleSortOptimized::bubbleSortOptimizedUnique);
         printResult(r2);
     }
 
     // Runs Insertion Sort on unique alcohol values
     public static void runInsertionSortUnique() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "InsertionSort-Unique", InsertionSort::insertionSortUniqueAlcohol);
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100, "InsertionSort-Unique", InsertionSort::insertionSortUniqueAlcohol);
         printResult(r);
     }
 
     // Runs Quick Sort (first pivot) on unique values
     public static void runQuickSortFirstPivotUnique() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-FirstPivot-Unique", QuickSortFirstPivot::sortUnique);
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100, "QuickSort-FirstPivot-Unique", QuickSortFirstPivot::sortUnique);
         printResult(r);
     }
 
     // Runs Quick Sort (last pivot) on unique values
     public static void runQuickSortLastPivotUnique() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-LastPivot-Unique", QuickSortLastPivot::sortUnique);
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100, "QuickSort-LastPivot-Unique", QuickSortLastPivot::sortUnique);
         printResult(r);
     }
 
     // Runs Quick Sort (median pivot) on unique values
     public static void runQuickSortMedianPivotUnique() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-MedianPivot-Unique", QuickSortMedianPivot::sortUnique);
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100, "QuickSort-MedianPivot-Unique", QuickSortMedianPivot::sortUnique);
         printResult(r);
     }
 
     // Runs Quick Sort (random pivot) on unique values
     public static void runQuickSortRandomPivotUnique() {
-        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-RandomPivot-Unique", QuickSortRandomPivot::sortUnique);
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100, "QuickSort-RandomPivot-Unique", QuickSortRandomPivot::sortUnique);
         printResult(r);
     }
 
-    // Runs Merge Sort on unique values
+    // Runs Merge Sort on unique values (sorted)
     public static void runMergeSortUnique() {
-        TestResult r = BenchmarkAlgorithms.testMergeSortUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), 100);
+        TestResult r = BenchmarkAlgorithms.testMergeSortUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), false, 100);
         printResult(r);
     }
 
@@ -146,6 +146,130 @@ public class RunBenchmark {
         runQuickSortMedianPivotUnique();
         runQuickSortRandomPivotUnique();
         runMergeSortUnique();
+        IO.println("");
+    }
+
+    /* ==============================================================================
+* FULL DATASET TESTS SHUFFLED
+============================================================================== */
+
+    // Runs both versions of Bubble Sort on full dataset
+    public static void runBubbleSortFullShuffled() {
+        TestResult r1 = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "BubbleSort-NonOptimized-Full", BubbleSortNonOptimized::bubbleSortNonOptimized);
+        printResult(r1);
+
+        TestResult r2 = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "BubbleSort-Optimized-Full", BubbleSortOptimized::bubbleSortOptimized);
+        printResult(r2);
+    }
+
+    // Runs Insertion Sort on full dataset
+    public static void runInsertionSortFullShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "InsertionSort-Full", InsertionSort::insertionSort);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (first element as pivot)
+    public static void runQuickSortFirstPivotFullShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-FirstPivot-Full", QuickSortFirstPivot::sort);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (last element as pivot)
+    public static void runQuickSortLastPivotFullShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-LastPivot-Full", QuickSortLastPivot::sort);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (median pivot strategy)
+    public static void runQuickSortMedianPivotFullShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-MedianPivot-Full", QuickSortMedianPivot::sort);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (random pivot strategy)
+    public static void runQuickSortRandomPivotFullShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithm(ORIGINAL_WINES, true, 100, "QuickSort-RandomPivot-Full", QuickSortRandomPivot::sort);
+        printResult(r);
+    }
+
+    // Runs Merge Sort on full dataset (shuffled)
+    public static void runMergeSortFullShuffled() {
+        TestResult r = BenchmarkAlgorithms.testMergeSort(ORIGINAL_WINES, true, 100);
+        printResult(r);
+    }
+
+    // Runs all sorting algorithms on full dataset
+    public static void runAllFullDatasetTestsShuffled() {
+        IO.println("===== Full Dataset Sorting (100 runs with JVM warm-up) =====\n");
+        runBubbleSortFullShuffled();
+        runInsertionSortFullShuffled();
+        runQuickSortFirstPivotFullShuffled();
+        runQuickSortLastPivotFullShuffled();
+        runQuickSortMedianPivotFullShuffled();
+        runQuickSortRandomPivotFullShuffled();
+        runMergeSortFullShuffled();
+        IO.println("");
+    }
+
+/* ==============================================================================
+* UNIQUE DATASET TESTS SHUFFLED
+============================================================================== */
+
+    // Runs Bubble Sort on unique alcohol values
+    public static void runBubbleSortUniqueShuffled() {
+        TestResult r1 = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "BubbleSort-NonOptimized-Unique", BubbleSortNonOptimized::bubbleSortNonOptimizedUnique);
+        printResult(r1);
+
+        TestResult r2 = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "BubbleSort-Optimized-Unique", BubbleSortOptimized::bubbleSortOptimizedUnique);
+        printResult(r2);
+    }
+
+    // Runs Insertion Sort on unique alcohol values
+    public static void runInsertionSortUniqueShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "InsertionSort-Unique", InsertionSort::insertionSortUniqueAlcohol);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (first pivot) on unique values
+    public static void runQuickSortFirstPivotUniqueShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-FirstPivot-Unique", QuickSortFirstPivot::sortUnique);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (last pivot) on unique values
+    public static void runQuickSortLastPivotUniqueShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-LastPivot-Unique", QuickSortLastPivot::sortUnique);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (median pivot) on unique values
+    public static void runQuickSortMedianPivotUniqueShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-MedianPivot-Unique", QuickSortMedianPivot::sortUnique);
+        printResult(r);
+    }
+
+    // Runs Quick Sort (random pivot) on unique values
+    public static void runQuickSortRandomPivotUniqueShuffled() {
+        TestResult r = BenchmarkAlgorithms.testAlgorithmUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100, "QuickSort-RandomPivot-Unique", QuickSortRandomPivot::sortUnique);
+        printResult(r);
+    }
+
+    // Runs Merge Sort on unique values (shuffled)
+    public static void runMergeSortUniqueShuffled() {
+        TestResult r = BenchmarkAlgorithms.testMergeSortUnique(new ArrayList<>(ORIGINAL_UNIQUE_ALCOHOL), true, 100);
+        printResult(r);
+    }
+
+    // Runs all sorting algorithms on unique dataset
+    public static void runAllUniqueDatasetTestsShuffled() {
+        IO.println("===== Unique Alcohol Values Sorting (100 runs with JVM warm-up) =====\n");
+        runBubbleSortUniqueShuffled();
+        runInsertionSortUniqueShuffled();
+        runQuickSortFirstPivotUniqueShuffled();
+        runQuickSortLastPivotUniqueShuffled();
+        runQuickSortMedianPivotUniqueShuffled();
+        runQuickSortRandomPivotUniqueShuffled();
+        runMergeSortUniqueShuffled();
         IO.println("");
     }
 
@@ -183,5 +307,10 @@ public class RunBenchmark {
         // Run actual benchmarks
         runAllFullDatasetTests();
         runAllUniqueDatasetTests();
+        
+        IO.println("\n=== NOW RUNNING SHUFFLED TESTS ===\n");
+        
+        runAllFullDatasetTestsShuffled();
+        runAllUniqueDatasetTestsShuffled();
     }
 }

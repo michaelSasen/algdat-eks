@@ -5,10 +5,12 @@ void main() {
 
     while (running) {
         IO.println("=== SORTING-PROGRAM ===");
-        IO.println("1. Run Full Dataset Benchmark");
-        IO.println("2. Run Unique Dataset Benchmark");
-        IO.println("3. Run Both Datasets");
-        IO.println("4. Quit");
+        IO.println("1. Run Full Dataset Benchmark (Sorted)");
+        IO.println("2. Run Full Dataset Benchmark (Shuffled)");
+        IO.println("3. Run Unique Dataset Benchmark (Sorted)");
+        IO.println("4. Run Unique Dataset Benchmark (Shuffled)");
+        IO.println("5. Run Both Datasets (Sorted & Shuffled)");
+        IO.println("6. Quit");
         IO.println("Enter action: ");
 
         int choice = scanner.nextInt();
@@ -20,14 +22,22 @@ void main() {
                 break;
 
             case 2:
-                RunBenchmark.runAllUniqueDatasetTests();
+                RunBenchmark.runAllFullDatasetTestsShuffled();
                 break;
 
             case 3:
-                RunBenchmark.runAllSortingAlgorithms();
+                RunBenchmark.runAllUniqueDatasetTests();
                 break;
 
             case 4:
+                RunBenchmark.runAllUniqueDatasetTestsShuffled();
+                break;
+
+            case 5:
+                RunBenchmark.runAllSortingAlgorithms();
+                break;
+
+            case 6:
                 running = false;
                 IO.println("Program exit.");
                 break;

@@ -97,15 +97,17 @@ public class BenchmarkAlgorithms {
     }
 
     // Benchmark Merge Sort (Wine dataset)
-    public static TestResult testMergeSort(ArrayList<Wine> dataset, int repetitions) {
+    public static TestResult testMergeSort(ArrayList<Wine> dataset, boolean shuffle, int repetitions) {
         long totalTime = 0;
         long totalMerges = 0;
 
         for (int i = 0; i < repetitions; i++) {
 
-            // Copy and shuffle dataset
+            // Copy and optionally shuffle dataset
             ArrayList<Wine> copiedData = new ArrayList<>(dataset);
-            Collections.shuffle(copiedData);
+            if (shuffle) {
+                Collections.shuffle(copiedData);
+            }
 
             // Reset merge counter
             MergeSort.mergeCount = 0;
@@ -121,19 +123,21 @@ public class BenchmarkAlgorithms {
         }
 
         // Return merge sort results
-        return new TestResult("Merge Sort", repetitions, true, totalTime, totalMerges, "Merge Operations");
+        return new TestResult("Merge Sort", repetitions, shuffle, totalTime, totalMerges, "Merge Operations");
     }
 
     // Benchmark Merge Sort for unique values
-    public static TestResult testMergeSortUnique(ArrayList<Double> dataset, int repetitions) {
+    public static TestResult testMergeSortUnique(ArrayList<Double> dataset, boolean shuffle, int repetitions) {
         long totalTime = 0;
         long totalMerges = 0;
 
         for (int i = 0; i < repetitions; i++) {
 
-            // Copy and shuffle dataset
+            // Copy and optionally shuffle dataset
             ArrayList<Double> copiedData = new ArrayList<>(dataset);
-            Collections.shuffle(copiedData);
+            if (shuffle) {
+                Collections.shuffle(copiedData);
+            }
 
             // Convert to set (unique values)
             HashSet<Double> uniqueSet = new HashSet<>(copiedData);
@@ -152,7 +156,7 @@ public class BenchmarkAlgorithms {
         }
 
         // Return results for unique merge sort
-        return new TestResult("Merge Sort Unique", repetitions, true, totalTime, totalMerges, "Merge Operations");
+        return new TestResult("Merge Sort Unique", repetitions, shuffle, totalTime, totalMerges, "Merge Operations");
     }
 
     // Warm-up runs for Wine dataset (no measurements)
