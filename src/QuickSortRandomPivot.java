@@ -27,9 +27,10 @@ public class QuickSortRandomPivot {
         }
     }
 
-    /* ==============================================================================
-     * QUICK SORT ALGORITHM PIVOT RANDOM
-     ============================================================================== */
+/* ==============================================================================
+ * QUICK SORT ALGORITHM PIVOT RANDOM
+============================================================================== */
+
      public static void quickSort(ArrayList<Wine> wines, int low, int high) {
          // Time Complexity: T(n) = T(k) + T(n-k-1) + O(n)
          // where k is partition result, O(n) for partition work
@@ -61,9 +62,9 @@ public class QuickSortRandomPivot {
         return left + 1;
     }
 
-    /* ==============================================================================
-   * QUICK SORT ALGORITHM PIVOT RANDOM UNIQUE VALUES
-   ============================================================================== */
+/* ==============================================================================
+* QUICK SORT ALGORITHM PIVOT RANDOM UNIQUE VALUES
+============================================================================== */
 
     public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {
         // Time Complexity: T(n) = T(k) + T(n-k-1) + O(n)

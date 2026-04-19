@@ -18,13 +18,6 @@ public class QuickSortLastPivot {
         }
     }
 
-    public static void sortUnique(ArrayList<Double> alcohol) {
-        comparisons = 0;
-        if (alcohol != null && !alcohol.isEmpty()) {
-            quickSortUnique(alcohol, 0, alcohol.size() - 1);
-        }
-    }
-
 /* ==============================================================================
 * QUICK SORT ALGORITHM PIVOT LAST
 ============================================================================== */
@@ -59,6 +52,13 @@ public class QuickSortLastPivot {
 /* ==============================================================================
 * QUICK SORT ALGORITHM PIVOT LAST UNIQUE VALUES
 ============================================================================== */
+
+    public static void sortUnique(ArrayList<Double> alcohol) {
+        comparisons = 0;
+        if (alcohol != null && !alcohol.isEmpty()) {
+            quickSortUnique(alcohol, 0, alcohol.size() - 1);
+        }
+    }
 
     public static void quickSortUnique(ArrayList<Double> alcohol, int low, int high) {
         // Time Complexity: T(n) = T(k) + T(n-k-1) + O(n)

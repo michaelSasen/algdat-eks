@@ -20,6 +20,6 @@ public class Timer {
     // Returns time spent
     public long getTime() {
         return endTime - startTime;
-    }
+    } 
 }
 

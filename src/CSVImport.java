@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class CSVImport {
-    void main() {
-        fileReader();
-    }
 
+    // read wine from csv data and return as list
     public static ArrayList<Wine> fileReader() {
 
         // CSV file path
@@ -20,17 +18,19 @@ public class CSVImport {
         ArrayList<Wine> wines = new ArrayList<>();
 
     for(String filePath : filePaths) {
+        // open file for reading
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
 
             // Skip the header
             br.readLine();
-
+            // read each data line until end of file
             while ((line = br.readLine()) != null) {
+                // split by ; for individual files
                 String[] row = line.split(";");
 
                 Wine wine = new Wine(
-                        Double.parseDouble(row[0]),
+                        Double.parseDouble (row[0]),
                         Double.parseDouble(row[1]),
                         Double.parseDouble(row[2]),
                         Double.parseDouble(row[3]),

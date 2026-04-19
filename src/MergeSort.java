@@ -84,9 +84,9 @@ public class MergeSort {
         }
     }
 
-    /* ==============================================================================
-    * MERGE SORT ALGORITHM UNIQUE
-    ============================================================================== */
+/* ==============================================================================
+* MERGE SORT ALGORITHM UNIQUE
+============================================================================== */
 
     // Time Complexity: O(n log n) - divide and conquer pattern
     public static void mergeSortUnique(HashSet<Double> uniqueAlcohol) {

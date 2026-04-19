@@ -5,7 +5,10 @@ import java.util.function.Consumer;
 
 public class BenchmarkAlgorithms {
 
-    // Generic benchmark method for Wine dataset
+/* ==============================================================================
+* BENCHMARK FULL DATASET
+============================================================================== */
+
     public static TestResult testAlgorithm(ArrayList<Wine> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Wine>> algorithm) {
         long totalTime = 0;
         long totalComparisons = 0;
@@ -15,7 +18,7 @@ public class BenchmarkAlgorithms {
             // Create a fresh copy of dataset for each run
             ArrayList<Wine> copiedData = new ArrayList<>(dataset);
 
-            // Shuffle data to avoid best/worst case bias
+            // Can shuffle data to avoid best/worst case bias if user chooses to do so
             if (shuffle) {
                 Collections.shuffle(copiedData);
             }
@@ -51,7 +54,10 @@ public class BenchmarkAlgorithms {
         return new TestResult(name, repetitions, shuffle, totalTime, totalComparisons, "Comparisons");
     }
 
-    // Same benchmark method for unique alcohol values (Double dataset)
+/* ==============================================================================
+  * BENCHMARK UNIQUE
+============================================================================== */
+
     public static TestResult testAlgorithmUnique(ArrayList<Double> dataset, boolean shuffle, int repetitions, String name, Consumer<ArrayList<Double>> algorithm) {
         long totalTime = 0;
         long totalComparisons = 0;
@@ -158,6 +164,10 @@ public class BenchmarkAlgorithms {
         // Return results for unique merge sort
         return new TestResult("Merge Sort Unique", repetitions, shuffle, totalTime, totalMerges, "Merge Operations");
     }
+
+/* ==============================================================================
+* WARMUP
+============================================================================== */
 
     // Warm-up runs for Wine dataset (no measurements)
     public static void runWarmUp(ArrayList<Wine> dataset, int warmUpLength, String name, Consumer<ArrayList<Wine>> algorithm) {
